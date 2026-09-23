@@ -1,0 +1,13 @@
+{
+  "name": "The Test Lab — Automation Practice Playground",
+  "short_name": "The Test Lab",
+  "description": "An open-source website for practising UI test automation.",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#F7F8FA",
+  "theme_color": "#3B3FD8",
+  "icons": [
+    { "src": "./assets/img/favicon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }
+  ]
+}

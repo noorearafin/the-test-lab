@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Alerts & modals | The Test Lab</title>
+  <link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="manifest" href="../manifest.webmanifest">
+  <meta name="theme-color" content="#3B3FD8">
+  <link rel="stylesheet" href="../assets/css/styles.css">
+  <script src="../assets/js/layout.js" defer></script>
+</head>
+<body data-page="alerts" data-root="..">
+  <div id="app-header"></div>
+  <div class="layout">
+    <aside id="app-sidebar"></aside>
+    <main class="content" id="main" data-tags="switchTo().alert(), accept, dismiss, sendKeys, page.on('dialog')">
+      <div class="callout"><svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg><div>Native dialogs block the page until your test accepts or dismisses them. In Playwright, register a <code>page.on('dialog')</code> handler before clicking.</div></div>
+      <section class="card" data-testid="card-js-dialogs">
+        <div class="card-head"><div><h2>JavaScript dialogs</h2><p>alert, confirm and prompt, each reporting what your test did.</p></div>
+          <div class="locators"><span class="loc">#alertBtn</span><span class="loc">#confirmBtn</span><span class="loc">#promptBtn</span></div></div>
+        <div class="card-body">
+          <div class="row">
+            <button class="btn btn-primary" id="alertBtn" data-testid="alert-btn">Show alert</button>
+            <button class="btn btn-primary" id="confirmBtn" data-testid="confirm-btn">Show confirm</button>
+            <button class="btn btn-primary" id="promptBtn" data-testid="prompt-btn">Show prompt</button>
+            <button class="btn btn-secondary" id="delayedAlertBtn" data-testid="delayed-alert-btn">Alert after 3 seconds</button>
+            <button class="btn btn-secondary" id="chainedBtn" data-testid="chained-btn">Confirm then alert</button>
+          </div>
+          <div class="result" id="dialogResult" data-testid="dialog-result" role="status">No dialog handled yet.</div>
+        </div>
+      </section>
+
+      <section class="card" data-testid="card-html-modals">
+        <div class="card-head"><div><h2>HTML modals</h2><p>These are regular DOM elements, so locate them like anything else. Close with the button, Escape or the backdrop.</p></div>
+          <div class="locators"><span class="loc">#subscribeModal</span><span class="loc">[role="dialog"]</span><span class="loc">#modalCloseBtn</span></div></div>
+        <div class="card-body">
+          <div class="row">
+            <button class="btn btn-secondary" id="openModalBtn" data-testid="open-modal-btn">Open subscribe modal</button>
+            <button class="btn btn-secondary" id="openDeleteBtn" data-testid="open-delete-btn">Delete account</button>
+            <button class="btn btn-secondary" id="autoModalBtn" data-testid="auto-modal-btn">Open modal after 2 seconds</button>
+          </div>
+          <div class="result" id="modalResult" data-testid="modal-result" role="status">No modal action yet.</div>
+        </div>
+      </section>
+    </main>
+  </div>
+  <div id="app-footer"></div>
+
+  <div class="modal-backdrop" id="subscribeBackdrop" data-testid="subscribe-backdrop">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="subscribeTitle" id="subscribeModal" data-testid="subscribe-modal">
+      <div class="modal-head"><h2 id="subscribeTitle">Subscribe to updates</h2><button class="icon-btn" id="modalCloseBtn" data-testid="modal-close-btn" aria-label="Close" style="width:32px;height:32px">✕</button></div>
+      <div class="modal-body stack">
+        <p class="muted small">Get release notes when new practice pages ship.</p>
+        <div class="field"><label for="modalEmail">Email</label><input class="input" type="email" id="modalEmail" data-testid="modal-email" placeholder="you@example.com"><span class="error" id="modalEmailError" data-testid="modal-email-error"></span></div>
+      </div>
+      <div class="modal-foot"><button class="btn btn-secondary" id="modalCancelBtn" data-testid="modal-cancel-btn">Cancel</button><button class="btn btn-primary" id="modalSubscribeBtn" data-testid="modal-subscribe-btn">Subscribe</button></div>
+    </div>
+  </div>
+  <div class="modal-backdrop" id="deleteBackdrop" data-testid="delete-backdrop">
+    <div class="modal" role="alertdialog" aria-modal="true" aria-labelledby="deleteTitle" aria-describedby="deleteDesc" id="deleteModal" data-testid="delete-modal">
+      <div class="modal-head"><h2 id="deleteTitle">Delete account?</h2></div>
+      <div class="modal-body"><p id="deleteDesc" class="muted">This removes your profile and test history. Type <strong>DELETE</strong> to confirm.</p><input class="input" style="margin-top:12px" type="text" id="deleteConfirmInput" data-testid="delete-confirm-input" aria-label="Type DELETE to confirm"></div>
+      <div class="modal-foot"><button class="btn btn-secondary" id="deleteCancelBtn" data-testid="delete-cancel-btn">Keep account</button><button class="btn btn-danger" id="deleteConfirmBtn" data-testid="delete-confirm-btn" disabled>Delete account</button></div>
+    </div>
+  </div>
+  <script src="../assets/js/pages/alerts.js" defer></script>
+</body>
+</html>

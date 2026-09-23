@@ -1,0 +1,6 @@
+{
+  "name": "test-lab-playwright-examples",
+  "private": true,
+  "scripts": { "test": "playwright test", "report": "playwright show-report" },
+  "devDependencies": { "@playwright/test": "^1.47.0" }
+}

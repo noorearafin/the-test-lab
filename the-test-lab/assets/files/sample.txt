@@ -1,0 +1,2 @@
+Hello from The Test Lab!
+This file is used to practise file download tests.

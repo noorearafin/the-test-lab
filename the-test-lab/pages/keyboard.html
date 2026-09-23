@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Keyboard | The Test Lab</title>
+  <link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="manifest" href="../manifest.webmanifest">
+  <meta name="theme-color" content="#3B3FD8">
+  <link rel="stylesheet" href="../assets/css/styles.css">
+  <script src="../assets/js/layout.js" defer></script>
+</head>
+<body data-page="keyboard" data-root="..">
+  <div id="app-header"></div>
+  <div class="layout">
+    <aside id="app-sidebar"></aside>
+    <main class="content" id="main" data-tags="Keys.ENTER, keyboard.press, chords, Tab order, clipboard">
+      <section class="card" data-testid="card-key-capture">
+        <div class="card-head"><div><h2>Key capture</h2><p>Focus the input and press any key or combination. The key name and code are shown.</p></div>
+          <div class="locators"><span class="loc">#keyInput</span><span class="loc">#keyDisplay</span><span class="loc">#keyCode</span></div></div>
+        <div class="card-body stack">
+          <input class="input" id="keyInput" data-testid="key-input" placeholder="Click here and press keys" autocomplete="off">
+          <div class="key-display" id="keyDisplay" data-testid="key-display"><span class="muted small">Waiting for a key press</span></div>
+          <p class="small muted">event.code: <code id="keyCode" data-testid="key-code">–</code></p>
+        </div>
+      </section>
+
+      <section class="card" data-testid="card-shortcuts">
+        <div class="card-head"><div><h2>Shortcuts</h2><p>Press these anywhere on the page (not inside a text field).</p></div>
+          <div class="locators"><span class="loc">#shortcutResult</span></div></div>
+        <div class="card-body">
+          <div class="table-wrap"><table class="table"><thead><tr><th>Shortcut</th><th>Action</th></tr></thead><tbody>
+            <tr><td><kbd>Ctrl</kbd> + <kbd>K</kbd></td><td>Focus the search box</td></tr>
+            <tr><td><kbd>Shift</kbd> + <kbd>?</kbd></td><td>Show help message</td></tr>
+            <tr><td><kbd>Alt</kbd> + <kbd>S</kbd></td><td>Save (shows a toast)</td></tr>
+            <tr><td><kbd>Esc</kbd></td><td>Clear the result</td></tr>
+          </tbody></table></div>
+          <input class="input" type="search" id="shortcutSearch" data-testid="shortcut-search" placeholder="Search (Ctrl + K)" style="margin-top:14px">
+          <div class="result" id="shortcutResult" data-testid="shortcut-result" role="status">Try a shortcut.</div>
+        </div>
+      </section>
+
+      <section class="card" data-testid="card-enter-submit">
+        <div class="card-head"><div><h2>Enter to submit and Tab order</h2><p>Press Tab to move through the fields in order, and Enter in the last one to submit.</p></div>
+          <div class="locators"><span class="loc">#tabField1</span><span class="loc">#tabField3</span></div></div>
+        <div class="card-body">
+          <form id="tabForm" data-testid="tab-form" class="grid-3">
+            <div class="field"><label for="tabField1">Field 1</label><input class="input" id="tabField1" data-testid="tab-field-1"></div>
+            <div class="field"><label for="tabField2">Field 2</label><input class="input" id="tabField2" data-testid="tab-field-2"></div>
+            <div class="field"><label for="tabField3">Field 3 (press Enter)</label><input class="input" id="tabField3" data-testid="tab-field-3"></div>
+          </form>
+          <div class="result" id="tabResult" data-testid="tab-result" role="status">Focused field: none</div>
+        </div>
+      </section>
+
+      <section class="card" data-testid="card-clipboard">
+        <div class="card-head"><div><h2>Clipboard</h2><p>Select all, copy and paste with keyboard chords, then compare values.</p></div>
+          <div class="locators"><span class="loc">#copySource</span><span class="loc">#pasteTarget</span></div></div>
+        <div class="card-body grid-2">
+          <div class="field"><label for="copySource">Copy from</label><input class="input" id="copySource" data-testid="copy-source" value="The Test Lab makes automation practice easy"></div>
+          <div class="field"><label for="pasteTarget">Paste here</label><input class="input" id="pasteTarget" data-testid="paste-target" placeholder="Ctrl + V"></div>
+          <div class="result" id="clipboardResult" data-testid="clipboard-result" role="status" style="grid-column:1/-1">Values don't match yet.</div>
+        </div>
+      </section>
+    </main>
+  </div>
+  <div id="app-footer"></div>
+
+  <script src="../assets/js/pages/keyboard.js" defer></script>
+</body>
+</html>

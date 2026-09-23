@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Links & images | The Test Lab</title>
+  <link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="manifest" href="../manifest.webmanifest">
+  <meta name="theme-color" content="#3B3FD8">
+  <link rel="stylesheet" href="../assets/css/styles.css">
+  <script src="../assets/js/layout.js" defer></script>
+</head>
+<body data-page="links" data-root="..">
+  <div id="app-header"></div>
+  <div class="layout">
+    <aside id="app-sidebar"></aside>
+    <main class="content" id="main" data-tags="findElements, getAttribute('href'), HTTP status, naturalWidth">
+      <section class="card" data-testid="card-links">
+        <div class="card-head"><div><h2>Link types</h2><p>Collect every link on the page, then check which ones respond with an error status.</p></div>
+          <div class="locators"><span class="loc">#linkList a</span><span class="loc">a[href]</span><span class="loc">//a[contains(text(),'Broken')]</span></div></div>
+        <div class="card-body">
+          <ul class="stack" id="linkList" data-testid="link-list" style="list-style:none;margin:0;padding:0">
+            <li><a href="forms.html" id="internalLink" data-testid="internal-link">Internal page link (Form inputs)</a> <span class="badge badge-success">200</span></li>
+            <li><a href="#linkStatus" id="anchorLink" data-testid="anchor-link">Same-page anchor link</a> <span class="badge badge-success">anchor</span></li>
+            <li><a href="https://example.com" target="_blank" rel="noopener" id="externalLink" data-testid="external-link">External link (opens in a new tab)</a> <span class="badge badge-success">200</span></li>
+            <li><a href="missing-page.html" id="brokenLink" data-testid="broken-link">Broken link (local 404)</a> <span class="badge badge-danger">404</span></li>
+            <li><a href="https://httpbin.org/status/404" target="_blank" rel="noopener" id="broken404" data-testid="broken-404">Broken external link</a> <span class="badge badge-danger">404</span></li>
+            <li><a href="https://httpbin.org/status/500" target="_blank" rel="noopener" id="broken500" data-testid="broken-500">Server error link</a> <span class="badge badge-danger">500</span></li>
+            <li><a href="https://httpbin.org/status/301" target="_blank" rel="noopener" id="redirectLink" data-testid="redirect-link">Redirect link</a> <span class="badge badge-warning">301</span></li>
+            <li><a id="noHrefLink" data-testid="no-href-link" tabindex="0" style="cursor:pointer">Anchor without href</a> <span class="badge badge-warning">no href</span></li>
+            <li><a href="mailto:hello@example.com" id="mailtoLink" data-testid="mailto-link">Email link (mailto)</a> <span class="badge badge-warning">mailto</span></li>
+            <li><a href="#" id="jsLink" data-testid="js-link">Link handled by JavaScript</a> <span class="badge badge-warning">js</span></li>
+          </ul>
+          <div class="row" style="margin-top:16px"><button class="btn btn-secondary" id="countLinksBtn" data-testid="count-links-btn">Count links in this card</button><button class="btn btn-secondary" id="checkLinksBtn" data-testid="check-links-btn">Check local links</button></div>
+          <div class="result" id="linkStatus" data-testid="link-status" role="status">Use the buttons, or write a test that checks each href.</div>
+        </div>
+      </section>
+
+      <section class="card" data-testid="card-images">
+        <div class="card-head"><div><h2>Images</h2><p>A broken image has <code>naturalWidth === 0</code> once loading has finished.</p></div>
+          <div class="locators"><span class="loc">#validImage</span><span class="loc">#brokenImage</span><span class="loc">img[alt]</span></div></div>
+        <div class="card-body">
+          <div class="grid-3">
+            <figure style="margin:0" class="stack"><img id="validImage" data-testid="valid-image" alt="Valid logo image" src="../assets/img/favicon.svg" width="96" height="96"><figcaption class="small muted">Valid image</figcaption></figure>
+            <figure style="margin:0" class="stack"><img id="brokenImage" data-testid="broken-image" alt="Broken image" src="../assets/img/does-not-exist.png" width="96" height="96" style="background:var(--surface-2);border-radius:8px"><figcaption class="small muted">Broken image</figcaption></figure>
+            <figure style="margin:0" class="stack"><img id="lazyImage" data-testid="lazy-image" alt="Lazy loaded image" loading="lazy" src="../assets/img/favicon.svg" width="96" height="96"><figcaption class="small muted">Lazy-loaded image</figcaption></figure>
+          </div>
+          <button class="btn btn-secondary" id="checkImagesBtn" data-testid="check-images-btn" style="margin-top:16px">Check images</button>
+          <div class="result" id="imageStatus" data-testid="image-status" role="status"></div>
+        </div>
+      </section>
+    </main>
+  </div>
+  <div id="app-footer"></div>
+
+  <script src="../assets/js/pages/links.js" defer></script>
+</body>
+</html>

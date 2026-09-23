@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Cookies & storage | The Test Lab</title>
+  <link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="manifest" href="../manifest.webmanifest">
+  <meta name="theme-color" content="#3B3FD8">
+  <link rel="stylesheet" href="../assets/css/styles.css">
+  <script src="../assets/js/layout.js" defer></script>
+</head>
+<body data-page="storage" data-root="..">
+  <div id="app-header"></div>
+  <div class="layout">
+    <aside id="app-sidebar"></aside>
+    <main class="content" id="main" data-tags="manage().getCookies, addCookie, context.cookies(), localStorage, sessionStorage">
+      <section class="card" data-testid="card-storage-controls">
+        <div class="card-head"><div><h2>Write values</h2><p>Store a key and value in a cookie, localStorage or sessionStorage, then verify it from your test.</p></div>
+          <div class="locators"><span class="loc">#storageKey</span><span class="loc">#storageValue</span><span class="loc">#setCookieBtn</span></div></div>
+        <div class="card-body">
+          <div class="grid-2">
+            <div class="field"><label for="storageKey">Key</label><input class="input" id="storageKey" data-testid="storage-key" value="username"></div>
+            <div class="field"><label for="storageValue">Value</label><input class="input" id="storageValue" data-testid="storage-value" value="tester"></div>
+          </div>
+          <div class="row" style="margin-top:16px">
+            <button class="btn btn-primary" id="setCookieBtn" data-testid="set-cookie-btn">Set cookie</button>
+            <button class="btn btn-primary" id="setLocalBtn" data-testid="set-local-btn">Set localStorage</button>
+            <button class="btn btn-primary" id="setSessionBtn" data-testid="set-session-btn">Set sessionStorage</button>
+            <button class="btn btn-danger" id="clearAllBtn" data-testid="clear-all-btn">Clear everything</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="card" data-testid="card-storage-view">
+        <div class="card-head"><div><h2>Current values</h2><p>Refreshes after each action. Cookies need a web server; they don't persist on file:// URLs in every browser.</p></div>
+          <div class="locators"><span class="loc">#cookieTable</span><span class="loc">#localTable</span></div></div>
+        <div class="card-body grid-3">
+          <div><h3 class="label" style="margin-bottom:8px">Cookies</h3><div class="table-wrap"><table class="table" id="cookieTable" data-testid="cookie-table"><thead><tr><th>Key</th><th>Value</th></tr></thead><tbody></tbody></table></div></div>
+          <div><h3 class="label" style="margin-bottom:8px">localStorage</h3><div class="table-wrap"><table class="table" id="localTable" data-testid="local-table"><thead><tr><th>Key</th><th>Value</th></tr></thead><tbody></tbody></table></div></div>
+          <div><h3 class="label" style="margin-bottom:8px">sessionStorage</h3><div class="table-wrap"><table class="table" id="sessionTable" data-testid="session-table"><thead><tr><th>Key</th><th>Value</th></tr></thead><tbody></tbody></table></div></div>
+        </div>
+      </section>
+
+      <section class="card" data-testid="card-consent">
+        <div class="card-head"><div><h2>Cookie consent banner</h2><p>The banner stays hidden once accepted, until the consent cookie is deleted.</p></div>
+          <div class="locators"><span class="loc">#consentBanner</span><span class="loc">#acceptCookiesBtn</span></div></div>
+        <div class="card-body">
+          <div id="consentBanner" data-testid="consent-banner" class="callout" style="justify-content:space-between;align-items:center;flex-wrap:wrap;margin:0">
+            <span>We use cookies to remember your preferences.</span>
+            <div class="row"><button class="btn btn-secondary btn-sm" id="rejectCookiesBtn" data-testid="reject-cookies-btn">Reject</button><button class="btn btn-primary btn-sm" id="acceptCookiesBtn" data-testid="accept-cookies-btn">Accept all</button></div>
+          </div>
+          <div class="result" id="consentResult" data-testid="consent-result" role="status"></div>
+        </div>
+      </section>
+    </main>
+  </div>
+  <div id="app-footer"></div>
+
+  <script src="../assets/js/pages/storage.js" defer></script>
+</body>
+</html>

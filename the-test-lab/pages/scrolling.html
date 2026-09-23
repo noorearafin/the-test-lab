@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Scrolling | The Test Lab</title>
+  <link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="manifest" href="../manifest.webmanifest">
+  <meta name="theme-color" content="#3B3FD8">
+  <link rel="stylesheet" href="../assets/css/styles.css">
+  <script src="../assets/js/layout.js" defer></script>
+</head>
+<body data-page="scrolling" data-root="..">
+  <div id="app-header"></div>
+  <div class="layout">
+    <aside id="app-sidebar"></aside>
+    <main class="content" id="main" data-tags="scrollIntoView, executeScript, mouse.wheel, infinite scroll, lazy load">
+      <section class="card" data-testid="card-infinite">
+        <div class="card-head"><div><h2>Infinite scroll</h2><p>Ten more items load each time you reach the bottom, up to 100.</p></div>
+          <div class="locators"><span class="loc">#infiniteList</span><span class="loc">[data-testid="feed-item-50"]</span></div></div>
+        <div class="card-body">
+          <div class="scroll-box" id="infiniteBox" data-testid="infinite-box"><ul id="infiniteList" data-testid="infinite-list"></ul><div id="infiniteLoader" class="row" style="justify-content:center;padding:12px" hidden><span class="spinner"></span></div></div>
+          <p class="small muted" style="margin-top:8px"><span id="infiniteCount" data-testid="infinite-count">0</span> items loaded</p>
+        </div>
+      </section>
+
+      <section class="card" data-testid="card-scroll-containers">
+        <div class="card-head"><div><h2>Scroll containers</h2><p>A button hidden at the bottom of a vertical box, and a horizontal carousel.</p></div>
+          <div class="locators"><span class="loc">#verticalBox</span><span class="loc">#hiddenInBoxBtn</span><span class="loc">#tile12</span></div></div>
+        <div class="card-body stack">
+          <div class="scroll-box" id="verticalBox" data-testid="vertical-box" style="padding:16px">
+            <p class="muted">Scroll down inside this box to find the button.</p><div style="height:520px"></div>
+            <button class="btn btn-primary" id="hiddenInBoxBtn" data-testid="hidden-in-box-btn">You found me</button>
+          </div>
+          <div class="scroll-h" id="horizontalBox" data-testid="horizontal-box"><div class="track" id="tileTrack"></div></div>
+          <div class="result" id="containerResult" data-testid="container-result" role="status">Scroll position: top</div>
+        </div>
+      </section>
+
+      <section class="card" data-testid="card-page-scroll">
+        <div class="card-head"><div><h2>Page scroll</h2><p>Scroll the whole window, and find a footer element far below.</p></div>
+          <div class="locators"><span class="loc">#scrollBottomBtn</span><span class="loc">#pageBottomMarker</span></div></div>
+        <div class="card-body">
+          <div class="row"><button class="btn btn-secondary" id="scrollBottomBtn" data-testid="scroll-bottom-btn">Scroll to bottom</button><button class="btn btn-secondary" id="scrollDemoBtn" data-testid="scroll-demo-btn">Scroll by 500px</button></div>
+          <p class="small muted" style="margin-top:10px">Window scrollY: <strong id="scrollY" data-testid="scroll-y">0</strong></p>
+          <div style="height:1400px;margin-top:16px;border-left:3px dashed var(--line);padding-left:16px" class="muted small">Long content area. Keep scrolling…</div>
+          <div class="callout" id="pageBottomMarker" data-testid="page-bottom-marker" style="margin:0"><strong>You reached the bottom of the page.</strong></div>
+          <button class="btn btn-secondary" id="scrollTopBtn" data-testid="scroll-top-btn" style="margin-top:12px">Back to top</button>
+        </div>
+      </section>
+    </main>
+  </div>
+  <div id="app-footer"></div>
+
+  <script src="../assets/js/pages/scrolling.js" defer></script>
+</body>
+</html>

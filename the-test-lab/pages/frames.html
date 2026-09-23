@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Iframes | The Test Lab</title>
+  <link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="manifest" href="../manifest.webmanifest">
+  <meta name="theme-color" content="#3B3FD8">
+  <link rel="stylesheet" href="../assets/css/styles.css">
+  <script src="../assets/js/layout.js" defer></script>
+</head>
+<body data-page="frames" data-root="..">
+  <div id="app-header"></div>
+  <div class="layout">
+    <aside id="app-sidebar"></aside>
+    <main class="content" id="main" data-tags="switchTo().frame, defaultContent, parentFrame, frameLocator">
+      <section class="card" data-testid="card-single-frame">
+        <div class="card-head"><div><h2>Single iframe</h2><p>Switch into the frame to type and click. The frame reports back to this page.</p></div>
+          <div class="locators"><span class="loc">#singleFrame</span><span class="loc">iframe[name="singleFrame"]</span><span class="loc">#frameInput</span></div></div>
+        <div class="card-body">
+          <iframe class="frame" id="singleFrame" name="singleFrame" data-testid="single-frame" title="Single frame example" src="frame-single.html"></iframe>
+        </div>
+      </section>
+
+      <section class="card" data-testid="card-nested-frames">
+        <div class="card-head"><div><h2>Nested iframes</h2><p>An inner frame inside an outer frame. Switch outer, then inner, then back to the parent frame.</p></div>
+          <div class="locators"><span class="loc">#outerFrame</span><span class="loc">#innerFrame</span><span class="loc">#innerInput</span></div></div>
+        <div class="card-body">
+          <iframe class="frame" id="outerFrame" name="outerFrame" data-testid="outer-frame" title="Outer frame example" src="frame-outer.html" style="height:320px"></iframe>
+        </div>
+      </section>
+
+      <section class="card" data-testid="card-frame-index">
+        <div class="card-head"><div><h2>Frame without id</h2><p>This frame has no id or name. Locate it by index or by its title attribute.</p></div>
+          <div class="locators"><span class="loc">iframe[title="Anonymous frame"]</span><span class="loc">frame index 2</span></div></div>
+        <div class="card-body">
+          <iframe class="frame" title="Anonymous frame" data-testid="anonymous-frame" src="frame-inner.html?label=Anonymous" style="height:160px"></iframe>
+        </div>
+      </section>
+      <div class="result" id="frameResult" data-testid="frame-result" role="status">Messages from frames appear here.</div>
+    </main>
+  </div>
+  <div id="app-footer"></div>
+
+  <script src="../assets/js/pages/frames.js" defer></script>
+</body>
+</html>

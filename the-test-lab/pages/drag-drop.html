@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Drag & drop | The Test Lab</title>
+  <link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="manifest" href="../manifest.webmanifest">
+  <meta name="theme-color" content="#3B3FD8">
+  <link rel="stylesheet" href="../assets/css/styles.css">
+  <script src="../assets/js/layout.js" defer></script>
+</head>
+<body data-page="drag-drop" data-root="..">
+  <div id="app-header"></div>
+  <div class="layout">
+    <aside id="app-sidebar"></aside>
+    <main class="content" id="main" data-tags="dragAndDrop, dragTo, clickAndHold, moveByOffset, release">
+      <section class="card" data-testid="card-basic-drag">
+        <div class="card-head"><div><h2>Basic drag and drop</h2><p>Uses the HTML5 drag events. Drop the card into the target box.</p></div>
+          <div class="locators"><span class="loc">#draggable</span><span class="loc">#droppable</span></div></div>
+        <div class="card-body">
+          <div class="grid-2">
+            <div class="zone" id="dragSource" data-testid="drag-source"><div class="draggable" id="draggable" data-testid="draggable" draggable="true">Drag me</div></div>
+            <div class="zone" id="droppable" data-testid="droppable" aria-live="polite">Drop here</div>
+          </div>
+          <div class="row" style="margin-top:12px"><button class="btn btn-secondary btn-sm" id="resetDragBtn" data-testid="reset-drag-btn">Reset</button></div>
+        </div>
+      </section>
+
+      <section class="card" data-testid="card-kanban">
+        <div class="card-head"><div><h2>Move items between lists</h2><p>Drag tasks between the columns. Each column reports its item count.</p></div>
+          <div class="locators"><span class="loc">#todoList</span><span class="loc">#doneList</span><span class="loc">[data-testid="task-2"]</span></div></div>
+        <div class="card-body grid-2">
+          <div><h3 class="label" style="margin-bottom:8px">To do (<span id="todoCount" data-testid="todo-count">3</span>)</h3>
+            <ul class="sortable-list zone" id="todoList" data-testid="todo-list" style="align-items:stretch;justify-content:flex-start;min-height:180px;padding:10px">
+              <li draggable="true" id="task1" data-testid="task-1"><span class="grip">⋮⋮</span>Write login test</li>
+              <li draggable="true" id="task2" data-testid="task-2"><span class="grip">⋮⋮</span>Add table assertions</li>
+              <li draggable="true" id="task3" data-testid="task-3"><span class="grip">⋮⋮</span>Handle iframes</li>
+            </ul></div>
+          <div><h3 class="label" style="margin-bottom:8px">Done (<span id="doneCount" data-testid="done-count">0</span>)</h3>
+            <ul class="sortable-list zone" id="doneList" data-testid="done-list" style="align-items:stretch;justify-content:flex-start;min-height:180px;padding:10px"></ul></div>
+        </div>
+      </section>
+
+      <section class="card" data-testid="card-sortable">
+        <div class="card-head"><div><h2>Sortable list</h2><p>Reorder items into ascending order. The list tells you when it's correct.</p></div>
+          <div class="locators"><span class="loc">#sortableList li</span><span class="loc">li[data-value="3"]</span></div></div>
+        <div class="card-body">
+          <ul class="sortable-list" id="sortableList" data-testid="sortable-list">
+            <li draggable="true" data-value="3" data-testid="sort-item-3"><span class="grip">⋮⋮</span>Item 3</li>
+            <li draggable="true" data-value="1" data-testid="sort-item-1"><span class="grip">⋮⋮</span>Item 1</li>
+            <li draggable="true" data-value="5" data-testid="sort-item-5"><span class="grip">⋮⋮</span>Item 5</li>
+            <li draggable="true" data-value="2" data-testid="sort-item-2"><span class="grip">⋮⋮</span>Item 2</li>
+            <li draggable="true" data-value="4" data-testid="sort-item-4"><span class="grip">⋮⋮</span>Item 4</li>
+          </ul>
+          <div class="result" id="sortResult" data-testid="sort-result" role="status">Current order: 3, 1, 5, 2, 4</div>
+        </div>
+      </section>
+
+      <section class="card" data-testid="card-slider">
+        <div class="card-head"><div><h2>Custom slider</h2><p>No native input here. Use mouse down, move by offset and release, or the arrow keys.</p></div>
+          <div class="locators"><span class="loc">#sliderHandle</span><span class="loc">#sliderValue</span></div></div>
+        <div class="card-body">
+          <div class="slider-track" id="sliderTrack" data-testid="slider-track"><div class="slider-fill" id="sliderFill"></div><div class="slider-handle" id="sliderHandle" data-testid="slider-handle" role="slider" tabindex="0" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" aria-label="Volume"></div></div>
+          <p>Value: <strong id="sliderValue" data-testid="slider-value">0</strong></p>
+        </div>
+      </section>
+    </main>
+  </div>
+  <div id="app-footer"></div>
+
+  <script src="../assets/js/pages/drag-drop.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Checkboxes & radios | The Test Lab</title>
+  <link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="manifest" href="../manifest.webmanifest">
+  <meta name="theme-color" content="#3B3FD8">
+  <link rel="stylesheet" href="../assets/css/styles.css">
+  <script src="../assets/js/layout.js" defer></script>
+</head>
+<body data-page="checkboxes" data-root="..">
+  <div id="app-header"></div>
+  <div class="layout">
+    <aside id="app-sidebar"></aside>
+    <main class="content" id="main" data-tags="isSelected, check, uncheck, setChecked, radio groups">
+      <section class="card" data-testid="card-checkboxes">
+        <div class="card-head"><div><h2>Checkbox group</h2><p>One option is pre-checked and one is disabled. "Select all" becomes indeterminate for partial selections.</p></div>
+          <div class="locators"><span class="loc">#selectAll</span><span class="loc">input[name="interest"]</span><span class="loc">#interestJava</span></div></div>
+        <div class="card-body">
+          <div class="choice-list">
+            <label class="check" style="font-weight:600"><input type="checkbox" id="selectAll" data-testid="select-all"><span>Select all</span></label>
+            <label class="check"><input type="checkbox" name="interest" value="java" id="interestJava" data-testid="interest-java"><span>Java</span></label>
+            <label class="check"><input type="checkbox" name="interest" value="python" id="interestPython" data-testid="interest-python" checked><span>Python (checked by default)</span></label>
+            <label class="check"><input type="checkbox" name="interest" value="javascript" id="interestJs" data-testid="interest-javascript"><span>JavaScript</span></label>
+            <label class="check"><input type="checkbox" name="interest" value="csharp" id="interestCsharp" data-testid="interest-csharp"><span>C#</span></label>
+            <label class="check"><input type="checkbox" name="interestDisabled" value="cobol" id="interestCobol" data-testid="interest-cobol" disabled><span>COBOL (disabled)</span></label>
+          </div>
+        </div>
+      </section>
+
+      <section class="card" data-testid="card-radios">
+        <div class="card-head"><div><h2>Radio groups</h2><p>Only one option per group can be selected.</p></div>
+          <div class="locators"><span class="loc">input[name="plan"]</span><span class="loc">#planPro</span><span class="loc">input[name="experience"][value="senior"]</span></div></div>
+        <div class="card-body grid-2">
+          <fieldset style="border:0;padding:0;margin:0"><legend class="label" style="margin-bottom:6px">Subscription plan</legend>
+            <div class="choice-list">
+              <label class="check"><input type="radio" name="plan" value="free" id="planFree" data-testid="plan-free"><span>Free</span></label>
+              <label class="check"><input type="radio" name="plan" value="pro" id="planPro" data-testid="plan-pro"><span>Pro</span></label>
+              <label class="check"><input type="radio" name="plan" value="team" id="planTeam" data-testid="plan-team"><span>Team</span></label>
+              <label class="check"><input type="radio" name="plan" value="enterprise" id="planEnterprise" data-testid="plan-enterprise" disabled><span>Enterprise (contact sales)</span></label>
+            </div></fieldset>
+          <fieldset style="border:0;padding:0;margin:0"><legend class="label" style="margin-bottom:6px">Experience level</legend>
+            <div class="choice-list">
+              <label class="check"><input type="radio" name="experience" value="junior" id="expJunior" data-testid="exp-junior" checked><span>Junior (default)</span></label>
+              <label class="check"><input type="radio" name="experience" value="mid" id="expMid" data-testid="exp-mid"><span>Mid-level</span></label>
+              <label class="check"><input type="radio" name="experience" value="senior" id="expSenior" data-testid="exp-senior"><span>Senior</span></label>
+            </div></fieldset>
+        </div>
+      </section>
+
+      <section class="card" data-testid="card-toggles">
+        <div class="card-head"><div><h2>Toggles and custom controls</h2><p>The input behind a switch is visually hidden. The ARIA checkbox is a div with role and aria-checked.</p></div>
+          <div class="locators"><span class="loc">#emailNotifications</span><span class="loc">[role="checkbox"]</span><span class="loc">[aria-checked]</span></div></div>
+        <div class="card-body stack">
+          <div class="row"><label class="switch"><input type="checkbox" id="emailNotifications" data-testid="email-notifications" role="switch"><span class="track"></span></label><label for="emailNotifications">Email notifications</label><span class="badge badge-danger" id="emailNotificationsState" data-testid="email-notifications-state">Off</span></div>
+          <div class="row"><label class="switch"><input type="checkbox" id="darkPreview" data-testid="dark-preview" role="switch" checked><span class="track"></span></label><label for="darkPreview">Auto-save drafts</label><span class="badge badge-success" id="darkPreviewState" data-testid="dark-preview-state">On</span></div>
+          <div class="row"><div role="checkbox" aria-checked="false" tabindex="0" id="ariaCheckbox" data-testid="aria-checkbox" class="check" style="user-select:none"><span id="ariaBox" style="width:17px;height:17px;border:2px solid var(--muted);border-radius:4px;display:grid;place-items:center;color:#fff;font-size:12px"></span><span>Subscribe to the newsletter (custom ARIA checkbox)</span></div></div>
+        </div>
+      </section>
+
+      <div class="result" id="choiceResult" data-testid="choice-result" role="status"></div>
+    </main>
+  </div>
+  <div id="app-footer"></div>
+
+  <script src="../assets/js/pages/checkboxes.js" defer></script>
+</body>
+</html>

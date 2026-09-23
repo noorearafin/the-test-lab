@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>UI widgets | The Test Lab</title>
+  <link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="manifest" href="../manifest.webmanifest">
+  <meta name="theme-color" content="#3B3FD8">
+  <link rel="stylesheet" href="../assets/css/styles.css">
+  <script src="../assets/js/layout.js" defer></script>
+</head>
+<body data-page="widgets" data-root="..">
+  <div id="app-header"></div>
+  <div class="layout">
+    <aside id="app-sidebar"></aside>
+    <main class="content" id="main" data-tags="tabs, accordion, autocomplete, rating, date picker, toast">
+      <section class="card" data-testid="card-tabs">
+        <div class="card-head"><div><h2>Tabs</h2><p>Hidden panels use the hidden attribute. Arrow keys move between tabs.</p></div>
+          <div class="locators"><span class="loc">[role="tab"]</span><span class="loc">#tabPricing</span><span class="loc">#panelPricing</span></div></div>
+        <div class="card-body tabs" id="demoTabs" data-testid="demo-tabs">
+          <div role="tablist" aria-label="Product information">
+            <button role="tab" aria-selected="true" aria-controls="panelOverview" id="tabOverview" data-testid="tab-overview">Overview</button>
+            <button role="tab" aria-selected="false" aria-controls="panelFeatures" id="tabFeatures" data-testid="tab-features" tabindex="-1">Features</button>
+            <button role="tab" aria-selected="false" aria-controls="panelPricing" id="tabPricing" data-testid="tab-pricing" tabindex="-1">Pricing</button>
+            <button role="tab" aria-selected="false" aria-controls="panelReviews" id="tabReviews" data-testid="tab-reviews" tabindex="-1">Reviews</button>
+          </div>
+          <div role="tabpanel" id="panelOverview" aria-labelledby="tabOverview" data-testid="panel-overview" tabindex="0">The Test Lab gives you a realistic UI to practise automation without needing a production app.</div>
+          <div role="tabpanel" id="panelFeatures" aria-labelledby="tabFeatures" data-testid="panel-features" tabindex="0" hidden>Stable locators, an event log for assertions, and pages for every common interaction.</div>
+          <div role="tabpanel" id="panelPricing" aria-labelledby="tabPricing" data-testid="panel-pricing" tabindex="0" hidden>Free forever. Price: <strong id="price" data-testid="price">BDT 0</strong></div>
+          <div role="tabpanel" id="panelReviews" aria-labelledby="tabReviews" data-testid="panel-reviews" tabindex="0" hidden>Rated 4.8 out of 5 by 1,240 testers.</div>
+        </div>
+      </section>
+
+      <section class="card" data-testid="card-accordion">
+        <div class="card-head"><div><h2>Accordion</h2><p>Built with details and summary. Check the open attribute to assert state.</p></div>
+          <div class="locators"><span class="loc">#faq1</span><span class="loc">details[open]</span><span class="loc">#faq2 summary</span></div></div>
+        <div class="card-body" id="faq" data-testid="faq">
+          <details class="accordion-item" id="faq1" data-testid="faq-1"><summary>Is The Test Lab free to use?</summary><p>Yes. It's open source under the MIT licence.</p></details>
+          <details class="accordion-item" id="faq2" data-testid="faq-2"><summary>Which tools can I use?</summary><p>Any browser automation tool: Selenium, Playwright, Cypress, WebdriverIO, Puppeteer and more.</p></details>
+          <details class="accordion-item" id="faq3" data-testid="faq-3"><summary>Can I run it offline?</summary><p>Yes. Clone the repository and start a local server.</p></details>
+        </div>
+      </section>
+
+      <section class="card" data-testid="card-inputs">
+        <div class="card-head"><div><h2>Autocomplete, rating and stepper</h2><p>Type at least two letters for suggestions. Use arrow keys and Enter to choose.</p></div>
+          <div class="locators"><span class="loc">#cityAutocomplete</span><span class="loc">.suggestion</span><span class="loc">[data-testid="star-4"]</span></div></div>
+        <div class="card-body grid-3">
+          <div class="field combo"><label for="cityAutocomplete">City</label>
+            <input class="input" id="cityAutocomplete" data-testid="city-autocomplete" placeholder="e.g. Dh" role="combobox" aria-expanded="false" aria-controls="citySuggestions" aria-autocomplete="list" autocomplete="off">
+            <ul class="dropdown-menu" id="citySuggestions" data-testid="city-suggestions" role="listbox" hidden></ul></div>
+          <div class="field"><span class="label" id="ratingLabel">Rate your experience</span><div class="stars" id="rating" data-testid="rating" role="radiogroup" aria-labelledby="ratingLabel"></div><span class="small muted" id="ratingText" data-testid="rating-text">Not rated</span></div>
+          <div class="field"><span class="label" id="qtyLabel">Quantity (1–10)</span><div class="stepper" role="group" aria-labelledby="qtyLabel"><button type="button" id="qtyMinus" data-testid="qty-minus" aria-label="Decrease quantity">−</button><output id="qtyValue" data-testid="qty-value" aria-live="polite">1</output><button type="button" id="qtyPlus" data-testid="qty-plus" aria-label="Increase quantity">+</button></div></div>
+        </div>
+      </section>
+
+      <section class="card" data-testid="card-date-picker">
+        <div class="card-head"><div><h2>Custom date picker</h2><p>A calendar built from buttons. Navigate months and pick a day. Past dates are disabled.</p></div>
+          <div class="locators"><span class="loc">#dateInput</span><span class="loc">#nextMonth</span><span class="loc">button[data-date="2026-12-25"]</span></div></div>
+        <div class="card-body">
+          <div class="dropdown" style="display:block;max-width:320px">
+            <input class="input" id="dateInput" data-testid="date-input" placeholder="Select a date" readonly aria-haspopup="dialog">
+            <div class="dropdown-menu" id="calendar" data-testid="calendar" hidden style="width:300px;padding:12px" role="dialog" aria-label="Choose date">
+              <div class="row" style="justify-content:space-between;margin-bottom:8px"><button type="button" class="btn btn-ghost btn-sm" id="prevMonth" data-testid="prev-month" aria-label="Previous month">‹</button><strong id="monthLabel" data-testid="month-label"></strong><button type="button" class="btn btn-ghost btn-sm" id="nextMonth" data-testid="next-month" aria-label="Next month">›</button></div>
+              <div id="calendarGrid" data-testid="calendar-grid" style="display:grid;grid-template-columns:repeat(7,1fr);gap:2px;text-align:center;font-size:13px"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="card" data-testid="card-notifications">
+        <div class="card-head"><div><h2>Notifications</h2><p>Toasts disappear after 3 seconds. The alert banner stays until you close it.</p></div>
+          <div class="locators"><span class="loc">[data-testid="toast"]</span><span class="loc">#alertBanner</span></div></div>
+        <div class="card-body">
+          <div class="row"><button class="btn btn-primary" id="toastBtn" data-testid="toast-btn">Show toast</button><button class="btn btn-secondary" id="bannerBtn" data-testid="banner-btn">Show alert banner</button></div>
+          <div id="alertBanner" data-testid="alert-banner" class="callout" role="alert" hidden style="margin:14px 0 0;justify-content:space-between;align-items:center;background:var(--warning-soft)"><span>Your trial ends in 3 days.</span><button class="icon-btn" id="closeBannerBtn" data-testid="close-banner-btn" aria-label="Dismiss" style="width:30px;height:30px">✕</button></div>
+        </div>
+      </section>
+      <div class="result" id="widgetResult" data-testid="widget-result" role="status">Interact with a widget.</div>
+    </main>
+  </div>
+  <div id="app-footer"></div>
+
+  <script src="../assets/js/pages/widgets.js" defer></script>
+</body>
+</html>

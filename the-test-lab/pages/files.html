@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Upload & download | The Test Lab</title>
+  <link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="manifest" href="../manifest.webmanifest">
+  <meta name="theme-color" content="#3B3FD8">
+  <link rel="stylesheet" href="../assets/css/styles.css">
+  <script src="../assets/js/layout.js" defer></script>
+</head>
+<body data-page="files" data-root="..">
+  <div id="app-header"></div>
+  <div class="layout">
+    <aside id="app-sidebar"></aside>
+    <main class="content" id="main" data-tags="sendKeys(path), setInputFiles, selectFile, downloads">
+      <section class="card" data-testid="card-upload">
+        <div class="card-head"><div><h2>File upload</h2><p>Send a file path straight to the input. You don't need to click the native file dialog.</p></div>
+          <div class="locators"><span class="loc">#singleUpload</span><span class="loc">#multiUpload</span><span class="loc">input[type="file"]</span></div></div>
+        <div class="card-body">
+          <div class="grid-2">
+            <div class="field"><label for="singleUpload">Single file (any type)</label><input class="input" type="file" id="singleUpload" name="singleUpload" data-testid="single-upload"></div>
+            <div class="field"><label for="multiUpload">Multiple images (.png, .jpg, max 2 MB each)</label><input class="input" type="file" id="multiUpload" name="multiUpload" data-testid="multi-upload" multiple accept=".png,.jpg,.jpeg,image/png,image/jpeg"></div>
+            <div class="field"><label for="hiddenUploadTrigger">Hidden input with a styled button</label>
+              <div class="row"><button type="button" class="btn btn-secondary" id="hiddenUploadTrigger" data-testid="hidden-upload-trigger">Choose file</button><span id="hiddenUploadName" class="small muted" data-testid="hidden-upload-name">No file selected</span></div>
+              <input type="file" id="hiddenUpload" data-testid="hidden-upload" style="display:none"></div>
+          </div>
+          <div class="row" style="margin-top:16px"><button class="btn btn-primary" id="uploadBtn" data-testid="upload-btn">Upload</button><button class="btn btn-secondary" id="clearUploadBtn" data-testid="clear-upload-btn">Clear</button></div>
+          <div class="progress" style="margin-top:14px" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="uploadProgress" data-testid="upload-progress"><div class="progress-bar" id="uploadProgressBar"></div></div>
+          <div class="result" id="uploadResult" data-testid="upload-result" role="status">No file chosen.</div>
+        </div>
+      </section>
+
+      <section class="card" data-testid="card-dropzone">
+        <div class="card-head"><div><h2>Drop zone</h2><p>Drag files from your desktop, or dispatch a drop event with a DataTransfer in your test.</p></div>
+          <div class="locators"><span class="loc">#dropZone</span></div></div>
+        <div class="card-body">
+          <div class="zone" id="dropZone" data-testid="drop-zone" tabindex="0"><strong>Drop files here</strong><span class="small">or click to browse</span></div>
+          <input type="file" id="dropZoneInput" data-testid="drop-zone-input" multiple hidden>
+          <ul id="droppedFiles" data-testid="dropped-files" style="margin:12px 0 0;padding-left:18px"></ul>
+        </div>
+      </section>
+
+      <section class="card" data-testid="card-download">
+        <div class="card-head"><div><h2>File download</h2><p>Verify the file lands in your download folder, or capture the download event in Playwright.</p></div>
+          <div class="locators"><span class="loc">#downloadTxt</span><span class="loc">#downloadCsvBtn</span><span class="loc">a[download]</span></div></div>
+        <div class="card-body">
+          <div class="row">
+            <a class="btn btn-primary" id="downloadTxt" data-testid="download-txt" href="../assets/files/sample.txt" download="sample.txt">Download sample.txt</a>
+            <a class="btn btn-secondary" id="downloadJson" data-testid="download-json" href="../assets/files/sample.json" download="sample.json">Download sample.json</a>
+            <button class="btn btn-secondary" id="downloadCsvBtn" data-testid="download-csv-btn">Generate report.csv</button>
+            <button class="btn btn-secondary" id="delayedDownloadBtn" data-testid="delayed-download-btn">Download after 3 seconds</button>
+          </div>
+          <div class="result" id="downloadResult" data-testid="download-result" role="status">No download yet.</div>
+        </div>
+      </section>
+    </main>
+  </div>
+  <div id="app-footer"></div>
+
+  <script src="../assets/js/pages/files.js" defer></script>
+</body>
+</html>

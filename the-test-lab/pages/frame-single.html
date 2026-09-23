@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../assets/css/styles.css">
+  <script>try{var t=localStorage.getItem("tl-theme");if(t)document.documentElement.dataset.theme=t;}catch(e){}</script>
+  <title>Single frame</title>
+</head>
+<body style="padding:16px;background:var(--surface)">
+  <h2 id="frameHeading" data-testid="frame-heading" style="font-size:16px;margin-bottom:10px">Inside the single frame</h2>
+  <div class="row" style="flex-wrap:nowrap">
+    <input class="input" id="frameInput" name="frameInput" data-testid="frame-input" placeholder="Type something inside the frame">
+    <button class="btn btn-primary" id="frameSubmitBtn" data-testid="frame-submit-btn">Send</button>
+  </div>
+  <label class="check" style="margin-top:10px"><input type="checkbox" id="frameCheckbox" data-testid="frame-checkbox"><span>Checkbox inside a frame</span></label>
+  <p class="result" id="frameOutput" data-testid="frame-output" style="margin-top:8px">Nothing sent yet.</p>
+  <script>
+    document.getElementById('frameSubmitBtn').addEventListener('click', function () {
+      var v = document.getElementById('frameInput').value;
+      document.getElementById('frameOutput').textContent = 'You typed: ' + v;
+      parent.postMessage({ type: 'tl-frame', frame: 'single', text: v }, '*');
+    });
+  </script>
+</body>
+</html>

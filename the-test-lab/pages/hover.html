@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Hover & tooltips | The Test Lab</title>
+  <link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="manifest" href="../manifest.webmanifest">
+  <meta name="theme-color" content="#3B3FD8">
+  <link rel="stylesheet" href="../assets/css/styles.css">
+  <script src="../assets/js/layout.js" defer></script>
+</head>
+<body data-page="hover" data-root="..">
+  <div id="app-header"></div>
+  <div class="layout">
+    <aside id="app-sidebar"></aside>
+    <main class="content" id="main" data-tags="moveToElement, hover(), trigger('mouseover'), visibility checks">
+      <section class="card" data-testid="card-hover-menu">
+        <div class="card-head"><div><h2>Hover menus</h2><p>Sub-menu items are hidden until you hover the parent. Clicking a hidden item directly will fail.</p></div>
+          <div class="locators"><span class="loc">#productsMenu</span><span class="loc">#menuLaptops</span><span class="loc">#accountMenu a</span></div></div>
+        <div class="card-body">
+          <nav class="row" aria-label="Demo navigation" style="gap:12px">
+            <div class="dropdown hover-menu" id="productsMenu" data-testid="products-menu">
+              <button class="btn btn-secondary" id="productsBtn" data-testid="products-btn" aria-haspopup="true">Products ▾</button>
+              <div class="dropdown-menu" role="menu">
+                <a href="#" role="menuitem" id="menuLaptops" data-testid="menu-laptops">Laptops</a>
+                <a href="#" role="menuitem" id="menuPhones" data-testid="menu-phones">Phones</a>
+                <a href="#" role="menuitem" id="menuAccessories" data-testid="menu-accessories">Accessories</a>
+              </div>
+            </div>
+            <div class="dropdown hover-menu" id="accountMenu" data-testid="account-menu">
+              <button class="btn btn-secondary" id="accountBtn" data-testid="account-btn" aria-haspopup="true">My account ▾</button>
+              <div class="dropdown-menu" role="menu">
+                <a href="#" role="menuitem" id="menuProfile" data-testid="menu-profile">Profile</a>
+                <a href="#" role="menuitem" id="menuOrders" data-testid="menu-orders">Orders</a>
+                <a href="#" role="menuitem" id="menuLogout" data-testid="menu-logout">Log out</a>
+              </div>
+            </div>
+          </nav>
+          <div class="result" id="hoverMenuResult" data-testid="hover-menu-result" role="status">Hover a menu, then click an item.</div>
+        </div>
+      </section>
+
+      <section class="card" data-testid="card-tooltips">
+        <div class="card-head"><div><h2>Tooltips</h2><p>A CSS tooltip that becomes visible on hover, a native title attribute, and a tooltip that appears after a delay.</p></div>
+          <div class="locators"><span class="loc">#tooltipBtn</span><span class="loc">#tooltipText</span><span class="loc">[title]</span></div></div>
+        <div class="card-body">
+          <div class="row" style="gap:16px;padding-top:36px">
+            <span class="tooltip"><button class="btn btn-secondary" id="tooltipBtn" data-testid="tooltip-btn" aria-describedby="tooltipText">Hover for tooltip</button><span class="tooltip-content" role="tooltip" id="tooltipText" data-testid="tooltip-text">Saved to your library</span></span>
+            <button class="btn btn-secondary" id="titleBtn" data-testid="title-btn" title="This is a native title tooltip">Native title</button>
+            <span class="tooltip"><button class="btn btn-secondary" id="delayedTooltipBtn" data-testid="delayed-tooltip-btn">Delayed tooltip</button><span class="tooltip-content" role="tooltip" id="delayedTooltip" data-testid="delayed-tooltip" style="transition:opacity .15s 1s, transform .15s 1s, visibility 0s 1s">Appears after 1 second</span></span>
+          </div>
+        </div>
+      </section>
+
+      <section class="card" data-testid="card-hover-cards">
+        <div class="card-head"><div><h2>Hover to reveal</h2><p>Action buttons appear over each product only while it's hovered.</p></div>
+          <div class="locators"><span class="loc">.hover-card</span><span class="loc">[data-testid="view-product-2"]</span></div></div>
+        <div class="card-body grid-3">
+          <div class="hover-card" data-testid="product-1" tabindex="0"><div style="height:130px;background:var(--soft);display:grid;place-items:center;font-weight:700">Wireless mouse</div><div class="overlay"><strong>BDT 1,250</strong><button class="btn btn-primary btn-sm" data-product="Wireless mouse" data-testid="view-product-1">View details</button></div></div>
+          <div class="hover-card" data-testid="product-2" tabindex="0"><div style="height:130px;background:var(--success-soft);display:grid;place-items:center;font-weight:700">Mechanical keyboard</div><div class="overlay"><strong>BDT 6,900</strong><button class="btn btn-primary btn-sm" data-product="Mechanical keyboard" data-testid="view-product-2">View details</button></div></div>
+          <div class="hover-card" data-testid="product-3" tabindex="0"><div style="height:130px;background:var(--warning-soft);display:grid;place-items:center;font-weight:700">USB-C hub</div><div class="overlay"><strong>BDT 3,400</strong><button class="btn btn-primary btn-sm" data-product="USB-C hub" data-testid="view-product-3">View details</button></div></div>
+        </div>
+        <div class="card-body" style="padding-top:0"><div class="result" id="hoverCardResult" data-testid="hover-card-result" role="status">Hover a product.</div></div>
+      </section>
+    </main>
+  </div>
+  <div id="app-footer"></div>
+
+  <script src="../assets/js/pages/hover.js" defer></script>
+</body>
+</html>

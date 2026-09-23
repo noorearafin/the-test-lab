@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../assets/css/styles.css">
+  <script>try{var t=localStorage.getItem("tl-theme");if(t)document.documentElement.dataset.theme=t;}catch(e){}</script>
+  <title>Inner frame</title>
+</head>
+<body style="padding:14px;background:var(--surface)">
+  <h3 id="innerHeading" data-testid="inner-heading" style="font-size:15px;margin-bottom:8px">Inner frame</h3>
+  <div class="row" style="flex-wrap:nowrap">
+    <input class="input" id="innerInput" name="innerInput" data-testid="inner-input" placeholder="Type in the inner frame">
+    <button class="btn btn-primary" id="innerBtn" data-testid="inner-btn">Send</button>
+  </div>
+  <p id="innerOutput" data-testid="inner-output" class="small muted" style="margin-top:8px">Nothing sent yet.</p>
+  <script>
+    var label = new URLSearchParams(location.search).get('label') || 'Inner';
+    document.getElementById('innerHeading').textContent = label + ' frame';
+    document.getElementById('innerBtn').addEventListener('click', function () {
+      var v = document.getElementById('innerInput').value;
+      document.getElementById('innerOutput').textContent = 'You typed: ' + v;
+      top.postMessage({ type: 'tl-frame', frame: label.toLowerCase(), text: v }, '*');
+    });
+  </script>
+</body>
+</html>

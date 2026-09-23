@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>SVG & canvas | The Test Lab</title>
+  <link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="manifest" href="../manifest.webmanifest">
+  <meta name="theme-color" content="#3B3FD8">
+  <link rel="stylesheet" href="../assets/css/styles.css">
+  <script src="../assets/js/layout.js" defer></script>
+</head>
+<body data-page="svg-canvas" data-root="..">
+  <div id="app-header"></div>
+  <div class="layout">
+    <aside id="app-sidebar"></aside>
+    <main class="content" id="main" data-tags="//*[name()='svg'], local-name(), canvas coordinates, screenshots">
+      <section class="card" data-testid="card-svg">
+        <div class="card-head"><div><h2>Clickable SVG</h2><p>Standard XPath won't match SVG elements. Use CSS selectors, or <code>//*[name()='circle']</code>.</p></div>
+          <div class="locators"><span class="loc">#svgStage circle</span><span class="loc">//*[name()='rect']</span><span class="loc">[data-testid="svg-star"]</span></div></div>
+        <div class="card-body">
+          <svg class="svg-stage" id="svgStage" data-testid="svg-stage" viewBox="0 0 480 200" role="img" aria-label="Clickable shapes">
+            <rect class="shape" id="svgSquare" data-testid="svg-square" data-name="square" x="30" y="40" width="110" height="110" rx="10" fill="#3B3FD8"/>
+            <circle class="shape" id="svgCircle" data-testid="svg-circle" data-name="circle" cx="220" cy="95" r="58" fill="#0E8F7E"/>
+            <polygon class="shape" id="svgTriangle" data-testid="svg-triangle" data-name="triangle" points="300,150 360,40 420,150" fill="#F5A524"/>
+            <text x="85" y="180" text-anchor="middle" font-size="13" fill="currentColor">Square</text>
+            <text x="220" y="180" text-anchor="middle" font-size="13" fill="currentColor">Circle</text>
+            <text x="360" y="180" text-anchor="middle" font-size="13" fill="currentColor">Triangle</text>
+          </svg>
+          <div class="result" id="svgResult" data-testid="svg-result" role="status">Click a shape.</div>
+        </div>
+      </section>
+
+      <section class="card" data-testid="card-chart">
+        <div class="card-head"><div><h2>SVG bar chart</h2><p>Hover a bar to read its value from the tooltip. Values are also in data attributes.</p></div>
+          <div class="locators"><span class="loc">.bar[data-month="Mar"]</span><span class="loc">#chartTooltip</span></div></div>
+        <div class="card-body"><div style="position:relative"><svg class="svg-stage" id="barChart" data-testid="bar-chart" viewBox="0 0 480 220" role="img" aria-label="Monthly test runs"></svg>
+          <div class="tooltip-content" id="chartTooltip" data-testid="chart-tooltip" style="position:absolute;transform:translateX(-50%)"></div></div></div>
+      </section>
+
+      <section class="card" data-testid="card-canvas">
+        <div class="card-head"><div><h2>Drawing canvas</h2><p>Canvas pixels aren't in the DOM. Draw with mouse actions and assert on the stroke counter or a screenshot.</p></div>
+          <div class="locators"><span class="loc">#drawCanvas</span><span class="loc">#strokeCount</span></div></div>
+        <div class="card-body">
+          <canvas class="draw" id="drawCanvas" data-testid="draw-canvas" width="800" height="300" aria-label="Drawing area"></canvas>
+          <div class="row" style="margin-top:12px">
+            <label class="row small" for="brushColor" style="gap:6px">Colour <input type="color" id="brushColor" data-testid="brush-color" value="#3b3fd8"></label>
+            <label class="row small" for="brushSize" style="gap:6px">Size <input type="range" id="brushSize" data-testid="brush-size" min="1" max="20" value="4" style="width:120px"></label>
+            <button class="btn btn-secondary btn-sm" id="clearCanvasBtn" data-testid="clear-canvas-btn">Clear</button>
+            <span class="small muted">Strokes: <strong id="strokeCount" data-testid="stroke-count">0</strong></span>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+  <div id="app-footer"></div>
+
+  <script src="../assets/js/pages/svg-canvas.js" defer></script>
+</body>
+</html>

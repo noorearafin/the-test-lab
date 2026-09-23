@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Web tables | The Test Lab</title>
+  <link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="manifest" href="../manifest.webmanifest">
+  <meta name="theme-color" content="#3B3FD8">
+  <link rel="stylesheet" href="../assets/css/styles.css">
+  <script src="../assets/js/layout.js" defer></script>
+</head>
+<body data-page="tables" data-root="..">
+  <div id="app-header"></div>
+  <div class="layout">
+    <aside id="app-sidebar"></aside>
+    <main class="content" id="main" data-tags="rows and columns, XPath axes, sorting, pagination, row actions">
+      <section class="card" data-testid="card-static-table">
+        <div class="card-head"><div><h2>Static table</h2><p>Read cells by row and column, sum a column, or find a row by its text.</p></div>
+          <div class="locators"><span class="loc">#booksTable tbody tr</span><span class="loc">//td[text()='Mukesh']/..</span></div></div>
+        <div class="card-body">
+          <div class="table-wrap">
+            <table class="table" id="booksTable" data-testid="books-table">
+              <caption class="sr-only">Books</caption>
+              <thead><tr><th scope="col">Book</th><th scope="col">Author</th><th scope="col">Subject</th><th scope="col">Price (BDT)</th></tr></thead>
+              <tbody>
+                <tr><td>Learn Selenium</td><td>Amit</td><td>Selenium</td><td>300</td></tr>
+                <tr><td>Learn Java</td><td>Mukesh</td><td>Java</td><td>500</td></tr>
+                <tr><td>Learn JavaScript</td><td>Animesh</td><td>JavaScript</td><td>300</td></tr>
+                <tr><td>Master Playwright</td><td>Mukesh</td><td>Playwright</td><td>3000</td></tr>
+                <tr><td>Master Java</td><td>Amod</td><td>Java</td><td>2000</td></tr>
+                <tr><td>Master Cypress</td><td>Amit</td><td>Cypress</td><td>1000</td></tr>
+              </tbody>
+              <tfoot><tr><td colspan="3">Total</td><td id="booksTotal" data-testid="books-total">7100</td></tr></tfoot>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <section class="card" data-testid="card-dynamic-table">
+        <div class="card-head"><div><h2>Employee directory</h2><p>Sort by clicking headers, search, change page size, and edit or delete rows.</p></div>
+          <div class="locators"><span class="loc">#employeeTable</span><span class="loc">tr[data-row-id="5"]</span><span class="loc">[data-testid="delete-3"]</span></div></div>
+        <div class="card-body">
+          <div class="table-toolbar">
+            <input class="input" type="search" id="tableSearch" data-testid="table-search" placeholder="Search name, email or department" aria-label="Search employees">
+            <select class="select" id="deptFilter" data-testid="dept-filter" aria-label="Filter by department"><option value="">All departments</option><option>Engineering</option><option>QA</option><option>Design</option><option>Sales</option><option>HR</option></select>
+            <select class="select" id="pageSize" data-testid="page-size" aria-label="Rows per page"><option value="5">5 per page</option><option value="10" selected>10 per page</option><option value="25">25 per page</option></select>
+            <button class="btn btn-primary" id="addEmployeeBtn" data-testid="add-employee-btn" style="margin-left:auto">Add employee</button>
+            <button class="btn btn-danger" id="deleteSelectedBtn" data-testid="delete-selected-btn" disabled>Delete selected</button>
+          </div>
+          <div class="table-wrap">
+            <table class="table" id="employeeTable" data-testid="employee-table">
+              <thead><tr>
+                <th><input type="checkbox" id="selectAllRows" data-testid="select-all-rows" aria-label="Select all rows on this page"></th>
+                <th class="sortable" data-key="id" scope="col">ID<span class="sort-ind">↕</span></th>
+                <th class="sortable" data-key="name" scope="col">Name<span class="sort-ind">↕</span></th>
+                <th class="sortable" data-key="email" scope="col">Email<span class="sort-ind">↕</span></th>
+                <th class="sortable" data-key="dept" scope="col">Department<span class="sort-ind">↕</span></th>
+                <th class="sortable" data-key="salary" scope="col">Salary<span class="sort-ind">↕</span></th>
+                <th scope="col">Status</th><th scope="col">Actions</th>
+              </tr></thead>
+              <tbody id="employeeBody"></tbody>
+            </table>
+          </div>
+          <div class="pager"><span id="pageInfo" data-testid="page-info"></span><div class="pager-buttons" id="pagerButtons" data-testid="pager"></div></div>
+          <div class="result" id="tableResult" data-testid="table-result" role="status">Changes you make appear here.</div>
+        </div>
+      </section>
+    </main>
+  </div>
+  <div id="app-footer"></div>
+
+  <div class="modal-backdrop" id="employeeBackdrop" data-testid="employee-backdrop">
+    <form class="modal" role="dialog" aria-modal="true" aria-labelledby="employeeModalTitle" id="employeeForm" data-testid="employee-form" novalidate>
+      <div class="modal-head"><h2 id="employeeModalTitle">Add employee</h2><button type="button" class="icon-btn" id="employeeCloseBtn" data-testid="employee-close-btn" aria-label="Close" style="width:32px;height:32px">✕</button></div>
+      <div class="modal-body stack">
+        <div class="field"><label for="empName" class="required">Name</label><input class="input" id="empName" data-testid="emp-name" required></div>
+        <div class="field"><label for="empEmail" class="required">Email</label><input class="input" type="email" id="empEmail" data-testid="emp-email" required></div>
+        <div class="grid-2" style="gap:12px">
+          <div class="field"><label for="empDept">Department</label><select class="select" id="empDept" data-testid="emp-dept"><option>Engineering</option><option>QA</option><option>Design</option><option>Sales</option><option>HR</option></select></div>
+          <div class="field"><label for="empSalary">Salary</label><input class="input" type="number" id="empSalary" data-testid="emp-salary" value="50000" min="0"></div>
+        </div>
+        <label class="check"><input type="checkbox" id="empActive" data-testid="emp-active" checked><span>Active</span></label>
+        <span class="error" id="employeeError" data-testid="employee-error"></span>
+      </div>
+      <div class="modal-foot"><button type="button" class="btn btn-secondary" id="employeeCancelBtn" data-testid="employee-cancel-btn">Cancel</button><button type="submit" class="btn btn-primary" id="employeeSaveBtn" data-testid="employee-save-btn">Save employee</button></div>
+    </form>
+  </div>
+  <script src="../assets/js/pages/tables.js" defer></script>
+</body>
+</html>

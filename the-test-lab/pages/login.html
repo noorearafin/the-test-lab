@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Login flow | The Test Lab</title>
+  <link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="manifest" href="../manifest.webmanifest">
+  <meta name="theme-color" content="#3B3FD8">
+  <link rel="stylesheet" href="../assets/css/styles.css">
+  <script src="../assets/js/layout.js" defer></script>
+</head>
+<body data-page="login" data-root="..">
+  <div id="app-header"></div>
+  <div class="layout">
+    <aside id="app-sidebar"></aside>
+    <main class="content" id="main" data-tags="end-to-end, negative tests, redirects, session, page object model">
+      <div class="grid-2" style="align-items:start">
+        <section class="card" data-testid="card-login" style="margin:0">
+          <div class="card-head"><div><h2>Sign in</h2><p>Use the demo credentials shown on the right.</p></div></div>
+          <div class="card-body">
+            <form id="loginForm" data-testid="login-form" novalidate class="stack" style="gap:14px">
+              <div class="field"><label for="username">Username</label><input class="input" id="username" name="username" data-testid="username" autocomplete="username" placeholder="Enter username"></div>
+              <div class="field"><label for="password">Password</label>
+                <div style="position:relative"><input class="input" type="password" id="password" name="password" data-testid="password" autocomplete="current-password" placeholder="Enter password" style="padding-right:64px"><button type="button" class="btn btn-ghost btn-sm" id="togglePassword" data-testid="toggle-password" aria-label="Show password" style="position:absolute;right:4px;top:50%;transform:translateY(-50%)">Show</button></div></div>
+              <div class="row" style="justify-content:space-between"><label class="check"><input type="checkbox" id="rememberMe" name="rememberMe" data-testid="remember-me"><span>Remember me</span></label><a href="#" id="forgotLink" data-testid="forgot-link" class="small">Forgot password?</a></div>
+              <div class="result error" id="loginError" data-testid="login-error" role="alert" hidden></div>
+              <button type="submit" class="btn btn-primary btn-lg" id="loginBtn" data-testid="login-btn" style="width:100%">Log in</button>
+            </form>
+          </div>
+        </section>
+        <section class="card" data-testid="card-credentials" style="margin:0">
+          <div class="card-head"><div><h2>Test accounts</h2><p>Each account triggers a different result.</p></div></div>
+          <div class="card-body">
+            <div class="table-wrap"><table class="table" id="credentialsTable" data-testid="credentials-table">
+              <thead><tr><th>Username</th><th>Password</th><th>Result</th></tr></thead>
+              <tbody>
+                <tr><td><code>testuser</code></td><td><code>Test@123</code></td><td><span class="badge badge-success">Success</span></td></tr>
+                <tr><td><code>admin</code></td><td><code>Admin@123</code></td><td><span class="badge badge-success">Admin role</span></td></tr>
+                <tr><td><code>locked</code></td><td><code>Test@123</code></td><td><span class="badge badge-danger">Account locked</span></td></tr>
+                <tr><td><code>slowuser</code></td><td><code>Test@123</code></td><td><span class="badge badge-warning">Slow (4s)</span></td></tr>
+              </tbody></table></div>
+            <p class="small muted" style="margin-top:12px">Three failed attempts in a row lock the form for 30 seconds.</p>
+          </div>
+        </section>
+      </div>
+    </main>
+  </div>
+  <div id="app-footer"></div>
+
+  <script src="../assets/js/pages/login.js" defer></script>
+</body>
+</html>

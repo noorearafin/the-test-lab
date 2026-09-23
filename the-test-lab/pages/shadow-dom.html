@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Shadow DOM | The Test Lab</title>
+  <link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="manifest" href="../manifest.webmanifest">
+  <meta name="theme-color" content="#3B3FD8">
+  <link rel="stylesheet" href="../assets/css/styles.css">
+  <script src="../assets/js/layout.js" defer></script>
+</head>
+<body data-page="shadow-dom" data-root="..">
+  <div id="app-header"></div>
+  <div class="layout">
+    <aside id="app-sidebar"></aside>
+    <main class="content" id="main" data-tags="getShadowRoot, shadowRoot, pierce, Playwright auto-piercing, web components">
+      <div class="callout"><svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg><div>Playwright and Cypress (with <code>includeShadowDom</code>) pierce open shadow roots automatically. In Selenium 4, call <code>getShadowRoot()</code> on the host element first.</div></div>
+      <section class="card" data-testid="card-open-shadow">
+        <div class="card-head"><div><h2>Open shadow root</h2><p>A web component with an input and a button inside its shadow root.</p></div>
+          <div class="locators"><span class="loc">tl-signup-card</span><span class="loc">#shadowEmail</span><span class="loc">#shadowSubmit</span></div></div>
+        <div class="card-body"><tl-signup-card id="signupHost" data-testid="signup-host"></tl-signup-card></div>
+      </section>
+
+      <section class="card" data-testid="card-nested-shadow">
+        <div class="card-head"><div><h2>Nested shadow roots</h2><p>A shadow root inside another shadow root. Go through each host in turn.</p></div>
+          <div class="locators"><span class="loc">tl-user-panel</span><span class="loc">tl-user-badge</span><span class="loc">#badgeBtn</span></div></div>
+        <div class="card-body"><tl-user-panel id="panelHost" data-testid="panel-host"></tl-user-panel></div>
+      </section>
+
+      <section class="card" data-testid="card-closed-shadow">
+        <div class="card-head"><div><h2>Closed shadow root</h2><p>Scripts can't reach inside a closed root through <code>shadowRoot</code>. Click by coordinates or use keyboard focus instead.</p></div>
+          <div class="locators"><span class="loc">tl-closed-widget</span></div></div>
+        <div class="card-body"><tl-closed-widget id="closedHost" data-testid="closed-host"></tl-closed-widget></div>
+      </section>
+      <div class="result" id="shadowResult" data-testid="shadow-result" role="status">Interact with a shadow component.</div>
+    </main>
+  </div>
+  <div id="app-footer"></div>
+
+  <script src="../assets/js/pages/shadow-dom.js" defer></script>
+</body>
+</html>

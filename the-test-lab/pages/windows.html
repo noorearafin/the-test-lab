@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Windows & tabs | The Test Lab</title>
+  <link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="manifest" href="../manifest.webmanifest">
+  <meta name="theme-color" content="#3B3FD8">
+  <link rel="stylesheet" href="../assets/css/styles.css">
+  <script src="../assets/js/layout.js" defer></script>
+</head>
+<body data-page="windows" data-root="..">
+  <div id="app-header"></div>
+  <div class="layout">
+    <aside id="app-sidebar"></aside>
+    <main class="content" id="main" data-tags="getWindowHandles, switchTo().window, context.waitForEvent('page'), popups">
+      <div class="callout"><svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg><div>If nothing opens, your browser may be blocking popups for this site. Automation browsers usually allow them.</div></div>
+      <section class="card" data-testid="card-new-tab">
+        <div class="card-head"><div><h2>New tabs</h2><p>Open a page in a new tab with a link or with JavaScript, then switch to it.</p></div>
+          <div class="locators"><span class="loc">#newTabLink</span><span class="loc">#newTabBtn</span><span class="loc">a[target="_blank"]</span></div></div>
+        <div class="card-body">
+          <div class="row">
+            <a class="btn btn-primary" href="new-window.html?source=link" target="_blank" id="newTabLink" data-testid="new-tab-link">Open new tab (link)</a>
+            <button class="btn btn-primary" id="newTabBtn" data-testid="new-tab-btn">Open new tab (JavaScript)</button>
+            <button class="btn btn-secondary" id="multiTabBtn" data-testid="multi-tab-btn">Open three tabs</button>
+            <button class="btn btn-secondary" id="delayedTabBtn" data-testid="delayed-tab-btn">Open tab after 2 seconds</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="card" data-testid="card-popup">
+        <div class="card-head"><div><h2>Popup window</h2><p>A sized browser window. Send a message from it back to this page, or close it from here.</p></div>
+          <div class="locators"><span class="loc">#popupBtn</span><span class="loc">#closePopupBtn</span></div></div>
+        <div class="card-body">
+          <div class="row">
+            <button class="btn btn-primary" id="popupBtn" data-testid="popup-btn">Open popup window</button>
+            <button class="btn btn-secondary" id="closePopupBtn" data-testid="close-popup-btn" disabled>Close popup</button>
+          </div>
+          <p class="small muted" style="margin-top:12px">Windows opened from this page: <strong id="openedCount" data-testid="opened-count">0</strong></p>
+          <div class="result" id="windowResult" data-testid="window-result" role="status">Messages from child windows appear here.</div>
+        </div>
+      </section>
+    </main>
+  </div>
+  <div id="app-footer"></div>
+
+  <script src="../assets/js/pages/windows.js" defer></script>
+</body>
+</html>

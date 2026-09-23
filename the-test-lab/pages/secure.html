@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Secure area | The Test Lab</title>
+  <link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="manifest" href="../manifest.webmanifest">
+  <meta name="theme-color" content="#3B3FD8">
+  <link rel="stylesheet" href="../assets/css/styles.css">
+  <script src="../assets/js/layout.js" defer></script>
+</head>
+<body data-page="secure" data-root="..">
+  <div id="app-header"></div>
+  <main class="container" id="secureMain" style="padding-top:48px;padding-bottom:80px;max-width:760px">
+    <div id="authorized" data-testid="authorized" hidden>
+      <span class="badge badge-success" id="roleBadge" data-testid="role-badge"></span>
+      <h1 id="welcomeMsg" data-testid="welcome-msg" style="font-size:32px;margin:12px 0 6px"></h1>
+      <p class="muted" id="sessionInfo" data-testid="session-info"></p>
+      <div class="grid-3" style="margin-top:28px">
+        <div class="card" style="margin:0"><div class="card-body"><p class="small muted">Tests run</p><strong style="font-size:24px" id="statRuns" data-testid="stat-runs">128</strong></div></div>
+        <div class="card" style="margin:0"><div class="card-body"><p class="small muted">Pass rate</p><strong style="font-size:24px" id="statPass" data-testid="stat-pass">94%</strong></div></div>
+        <div class="card" style="margin:0"><div class="card-body"><p class="small muted">Flaky tests</p><strong style="font-size:24px" id="statFlaky" data-testid="stat-flaky">3</strong></div></div>
+      </div>
+      <div class="row" style="margin-top:28px"><button class="btn btn-danger" id="logoutBtn" data-testid="logout-btn">Log out</button><a class="btn btn-secondary" href="forms.html" data-testid="continue-link">Continue practising</a></div>
+    </div>
+    <div id="unauthorized" data-testid="unauthorized" hidden>
+      <h1 style="font-size:28px;margin-bottom:8px">You need to log in</h1>
+      <p class="muted">This page is only available after signing in.</p>
+      <a class="btn btn-primary" href="login.html" id="goToLogin" data-testid="go-to-login" style="margin-top:20px">Go to login</a>
+    </div>
+  </main>
+  <div id="app-footer"></div>
+  <script>
+    (function () {
+      var s = null;
+      try { s = JSON.parse(sessionStorage.getItem('tl-session')); } catch (e) { s = null; }
+      if (!s) { document.getElementById('unauthorized').hidden = false; return; }
+      document.getElementById('authorized').hidden = false;
+      document.getElementById('welcomeMsg').textContent = 'Welcome back, ' + s.user + '!';
+      document.getElementById('roleBadge').textContent = s.role;
+      document.getElementById('sessionInfo').textContent = 'Signed in at ' + new Date(s.at).toLocaleTimeString() + '. You are in the secure area.';
+      document.getElementById('logoutBtn').addEventListener('click', function () {
+        try { sessionStorage.removeItem('tl-session'); } catch (e) {}
+        location.href = 'login.html?loggedOut=1';
+      });
+    })();
+  </script>
+</body>
+</html>

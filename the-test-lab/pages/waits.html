@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Waits & dynamic content | The Test Lab</title>
+  <link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="manifest" href="../manifest.webmanifest">
+  <meta name="theme-color" content="#3B3FD8">
+  <link rel="stylesheet" href="../assets/css/styles.css">
+  <script src="../assets/js/layout.js" defer></script>
+</head>
+<body data-page="waits" data-root="..">
+  <div id="app-header"></div>
+  <div class="layout">
+    <aside id="app-sidebar"></aside>
+    <main class="content" id="main" data-tags="WebDriverWait, ExpectedConditions, auto-waiting, stale elements">
+      <section class="card" data-testid="card-visibility">
+        <div class="card-head"><div><h2>Appear and disappear</h2><p>Wait for elements to be added, become visible, or be removed. Don't use fixed sleeps.</p></div>
+          <div class="locators"><span class="loc">#delayedElement</span><span class="loc">#hiddenElement</span><span class="loc">#vanishingElement</span></div></div>
+        <div class="card-body grid-3">
+          <div class="stack"><button class="btn btn-primary" id="addElementBtn" data-testid="add-element-btn">Add element after 5s</button><div class="result" id="addArea" data-testid="add-area">Not added yet.</div></div>
+          <div class="stack"><button class="btn btn-primary" id="showElementBtn" data-testid="show-element-btn">Show hidden element after 3s</button><div class="result"><span id="hiddenElement" data-testid="hidden-element" style="display:none" class="badge badge-success">I was in the DOM all along</span></div></div>
+          <div class="stack"><button class="btn btn-primary" id="removeElementBtn" data-testid="remove-element-btn">Remove element after 3s</button><div class="result" id="removeArea"><span id="vanishingElement" data-testid="vanishing-element">I will be removed</span></div></div>
+        </div>
+      </section>
+
+      <section class="card" data-testid="card-state">
+        <div class="card-head"><div><h2>State changes</h2><p>Wait until clickable, until text matches, until an attribute changes.</p></div>
+          <div class="locators"><span class="loc">#delayedInput</span><span class="loc">#statusText</span><span class="loc">#colorBox</span></div></div>
+        <div class="card-body grid-3">
+          <div class="stack"><button class="btn btn-primary" id="enableInputBtn" data-testid="enable-input-btn">Enable input after 3s</button><input class="input" id="delayedInput" data-testid="delayed-input" disabled placeholder="Disabled"></div>
+          <div class="stack"><button class="btn btn-primary" id="changeTextBtn" data-testid="change-text-btn">Start job</button><div class="result" id="statusText" data-testid="status-text">Status: Idle</div></div>
+          <div class="stack"><button class="btn btn-primary" id="changeAttrBtn" data-testid="change-attr-btn">Change class after 2s</button><div class="result" id="colorBox" data-testid="color-box" data-state="pending">data-state="pending"</div></div>
+        </div>
+      </section>
+
+      <section class="card" data-testid="card-loading">
+        <div class="card-head"><div><h2>Loaders</h2><p>Wait for the spinner to go away, a progress bar to finish, or a skeleton to be replaced.</p></div>
+          <div class="locators"><span class="loc">#loadingSpinner</span><span class="loc">#progressBar</span><span class="loc">#userCard</span></div></div>
+        <div class="card-body grid-3">
+          <div class="stack"><button class="btn btn-primary" id="loadDataBtn" data-testid="load-data-btn">Load data</button><div class="result" id="dataArea" data-testid="data-area">No data loaded.</div></div>
+          <div class="stack"><button class="btn btn-primary" id="startProgressBtn" data-testid="start-progress-btn">Start download</button>
+            <div class="progress" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="progressBar" data-testid="progress-bar"><div class="progress-bar" id="progressFill"></div></div>
+            <span class="small" id="progressLabel" data-testid="progress-label">0%</span></div>
+          <div class="stack"><button class="btn btn-primary" id="loadProfileBtn" data-testid="load-profile-btn">Load profile</button><div class="result" id="profileArea" data-testid="profile-area">Profile not loaded.</div></div>
+        </div>
+      </section>
+
+      <section class="card" data-testid="card-flaky">
+        <div class="card-head"><div><h2>Unpredictable timing</h2><p>A random delay, an element that re-renders (stale references), and an overlay that blocks clicks.</p></div>
+          <div class="locators"><span class="loc">#randomResult</span><span class="loc">#staleList li</span><span class="loc">#blockedBtn</span></div></div>
+        <div class="card-body grid-3">
+          <div class="stack"><button class="btn btn-primary" id="randomDelayBtn" data-testid="random-delay-btn">Random delay (1–8s)</button><div class="result" id="randomArea" data-testid="random-area">Waiting to start.</div></div>
+          <div class="stack"><button class="btn btn-primary" id="rerenderBtn" data-testid="rerender-btn">Re-render list</button><ul id="staleList" data-testid="stale-list" style="margin:0;padding-left:18px"><li>Apple</li><li>Banana</li><li>Cherry</li></ul><span class="small muted">Render count: <span id="renderCount" data-testid="render-count">1</span></span></div>
+          <div class="stack"><button class="btn btn-primary" id="showOverlayBtn" data-testid="show-overlay-btn">Show blocking overlay (3s)</button>
+            <div style="position:relative"><button class="btn btn-secondary" id="blockedBtn" data-testid="blocked-btn" style="width:100%">Click me after the overlay</button><div id="overlay" data-testid="overlay" hidden style="position:absolute;inset:-4px;background:color-mix(in srgb,var(--ink) 55%,transparent);border-radius:8px;display:grid;place-items:center;color:#fff;font-size:13px">Loading…</div></div>
+            <div class="result" id="overlayResult" data-testid="overlay-result">Not clicked.</div></div>
+        </div>
+      </section>
+    </main>
+  </div>
+  <div id="app-footer"></div>
+
+  <script src="../assets/js/pages/waits.js" defer></script>
+</body>
+</html>

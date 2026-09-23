@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../assets/css/styles.css">
+  <script>try{var t=localStorage.getItem("tl-theme");if(t)document.documentElement.dataset.theme=t;}catch(e){}</script>
+  <title>Outer frame</title>
+</head>
+<body style="padding:16px;background:var(--surface-2)">
+  <h2 id="outerHeading" data-testid="outer-heading" style="font-size:16px;margin-bottom:8px">Outer frame</h2>
+  <div class="row" style="margin-bottom:12px"><button class="btn btn-secondary btn-sm" id="outerBtn" data-testid="outer-btn">Button in outer frame</button><span id="outerOutput" data-testid="outer-output" class="small muted">Not clicked</span></div>
+  <iframe id="innerFrame" name="innerFrame" data-testid="inner-frame" title="Inner frame" src="frame-inner.html?label=Inner" class="frame" style="height:170px"></iframe>
+  <script>
+    document.getElementById('outerBtn').addEventListener('click', function () {
+      document.getElementById('outerOutput').textContent = 'Outer button clicked';
+      parent.postMessage({ type: 'tl-frame', frame: 'outer', text: 'outer button clicked' }, '*');
+    });
+  </script>
+</body>
+</html>

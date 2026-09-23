@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>New Window | The Test Lab</title>
+  <link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="manifest" href="../manifest.webmanifest">
+  <meta name="theme-color" content="#3B3FD8">
+  <link rel="stylesheet" href="../assets/css/styles.css">
+</head>
+<body data-page="new-window">
+  <main class="container" style="padding-top:56px;max-width:640px">
+    <span class="badge badge-success" id="windowSource" data-testid="window-source">Opened from: unknown</span>
+    <h1 id="childHeading" data-testid="child-heading" style="font-size:32px;margin:14px 0 8px">This is a new window</h1>
+    <p class="muted" id="childText" data-testid="child-text">You switched windows successfully. Interact with this page, then switch back to the original.</p>
+    <div class="card" style="margin-top:24px"><div class="card-body stack">
+      <div class="field"><label for="childMessage">Message for the parent page</label><input class="input" id="childMessage" data-testid="child-message" value="Hello from the child window"></div>
+      <div class="row">
+        <button class="btn btn-primary" id="sendToParentBtn" data-testid="send-to-parent-btn">Send to parent</button>
+        <button class="btn btn-secondary" id="closeWindowBtn" data-testid="close-window-btn">Close this window</button>
+      </div>
+      <div class="result" id="childResult" data-testid="child-result" role="status">Waiting for an action.</div>
+    </div></div>
+  </main>
+  <script>
+    (function () {
+      var source = new URLSearchParams(location.search).get('source') || 'unknown';
+      document.getElementById('windowSource').textContent = 'Opened from: ' + source;
+      document.title = 'New Window (' + source + ') | The Test Lab';
+      document.getElementById('sendToParentBtn').addEventListener('click', function () {
+        var r = document.getElementById('childResult');
+        if (window.opener) {
+          window.opener.postMessage({ type: 'tl-child', source: source, text: document.getElementById('childMessage').value }, '*');
+          r.className = 'result success'; r.textContent = 'Message sent to the parent page';
+        } else { r.className = 'result error'; r.textContent = 'No parent window. This tab was opened without an opener.'; }
+      });
+      document.getElementById('closeWindowBtn').addEventListener('click', function () { window.close(); });
+    })();
+  </script>
+</body>
+</html>

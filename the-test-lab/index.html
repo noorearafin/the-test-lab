@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="description" content="The Test Lab is a free, open-source website for practising UI test automation with Selenium, Playwright, Cypress, WebdriverIO and more.">
+  <meta name="author" content="Noor E Arafin">
+  <title>The Test Lab | Test automation practice playground</title>
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="manifest" href="manifest.webmanifest">
+  <meta name="theme-color" content="#3B3FD8">
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <script src="assets/js/layout.js" defer></script>
+</head>
+<body data-page="home" data-root=".">
+  <div id="app-header"></div>
+
+  <main id="main">
+    <section class="hero" data-testid="hero">
+      <div class="container">
+        <div>
+          <span class="hero-badge"><span class="dot"></span>Free and open source</span>
+          <h1 id="heroTitle" data-testid="hero-title">Practise test automation on a real-world UI.</h1>
+          <p class="lead">Twenty pages of web components built for Selenium, Playwright, Cypress and WebdriverIO. Every element has a stable id and data-testid, so you can focus on writing good tests.</p>
+          <div class="hero-cta">
+            <a class="btn btn-primary btn-lg" href="pages/forms.html" id="startBtn" data-testid="start-practising">Start practising</a>
+            <a class="btn btn-secondary btn-lg" href="#get-started" data-testid="run-locally">Run it locally</a>
+          </div>
+          <div class="hero-meta">
+            <span><svg class="icon" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>No sign-up</span>
+            <span><svg class="icon" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Works offline</span>
+            <span><svg class="icon" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Zero dependencies</span>
+          </div>
+        </div>
+
+        <div class="code-window" data-testid="code-window">
+          <div class="code-window-bar">
+            <div class="code-window-dots" aria-hidden="true"><i></i><i></i><i></i></div>
+            <div class="code-tabs" role="tablist" aria-label="Framework examples">
+              <button role="tab" aria-selected="true" data-lang="playwright" id="codeTabPlaywright" data-testid="code-tab-playwright">Playwright</button>
+              <button role="tab" aria-selected="false" data-lang="selenium" id="codeTabSelenium" data-testid="code-tab-selenium">Selenium</button>
+              <button role="tab" aria-selected="false" data-lang="cypress" id="codeTabCypress" data-testid="code-tab-cypress">Cypress</button>
+            </div>
+          </div>
+          <pre id="codeSample" data-testid="code-sample" role="tabpanel" aria-labelledby="codeTabPlaywright"></pre>
+        </div>
+      </div>
+    </section>
+
+    <section class="tools-strip" aria-label="Supported tools">
+      <div class="container">
+        <p>Works with any browser automation tool</p>
+        <ul>
+          <li>Selenium</li><li>Playwright</li><li>Cypress</li><li>WebdriverIO</li><li>Puppeteer</li><li>Robot Framework</li><li>TestCafe</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section" id="components" data-testid="components">
+      <div class="container">
+        <div class="section-head">
+          <h2>Pick a component and start testing</h2>
+          <p>Each page focuses on one kind of interaction, from simple inputs to shadow DOM and flaky timing. Start at the top or jump to whatever you need to practise.</p>
+        </div>
+        <div id="categoryGroups"></div>
+      </div>
+    </section>
+
+    <section class="section" id="get-started" style="background:var(--surface);border-top:1px solid var(--line);border-bottom:1px solid var(--line)" data-testid="get-started">
+      <div class="container">
+        <div class="section-head">
+          <h2>Run it on your machine</h2>
+          <p>The Test Lab is plain HTML, CSS and JavaScript. Clone it, serve it, and point your tests at <code>http://localhost:3000</code>.</p>
+        </div>
+        <div class="steps">
+          <div class="step"><h3>Clone the repository</h3><p>Download the source from GitHub.</p><div class="cmd"><span id="cloneCommand" data-testid="clone-command">git clone https://github.com/noorearafin/the-test-lab.git</span><button aria-label="Copy command" data-copy>C</button></div></div>
+          <div class="step"><h3>Start a local server</h3><p>Use Node, or Python if you prefer.</p><div class="cmd"><span>npm install &amp;&amp; npm start</span><button aria-label="Copy command" data-copy>C</button></div></div>
+          <div class="step"><h3>Write your first test</h3><p>Ready-made examples live in the examples folder.</p><div class="cmd"><span>open http://localhost:3000</span><button aria-label="Copy command" data-copy>C</button></div></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div id="app-footer"></div>
+
+  <script src="assets/js/pages/home.js" defer></script>
+</body>
+</html>

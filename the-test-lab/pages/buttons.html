@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Buttons & mouse | The Test Lab</title>
+  <link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="manifest" href="../manifest.webmanifest">
+  <meta name="theme-color" content="#3B3FD8">
+  <link rel="stylesheet" href="../assets/css/styles.css">
+  <script src="../assets/js/layout.js" defer></script>
+</head>
+<body data-page="buttons" data-root="..">
+  <div id="app-header"></div>
+  <div class="layout">
+    <aside id="app-sidebar"></aside>
+    <main class="content" id="main" data-tags="click, doubleClick, contextClick, Actions, moveToElement, dynamic locators">
+      <section class="card" data-testid="card-clicks">
+        <div class="card-head"><div><h2>Click types</h2><p>Each button responds only to its own kind of click.</p></div>
+          <div class="locators"><span class="loc">#singleClickBtn</span><span class="loc">#doubleClickBtn</span><span class="loc">#rightClickBtn</span></div></div>
+        <div class="card-body">
+          <div class="row">
+            <button class="btn btn-primary" id="singleClickBtn" data-testid="single-click-btn">Click me</button>
+            <button class="btn btn-secondary" id="doubleClickBtn" data-testid="double-click-btn">Double-click me</button>
+            <button class="btn btn-secondary" id="rightClickBtn" data-testid="right-click-btn">Right-click me</button>
+          </div>
+          <div class="result" id="clickResult" data-testid="click-result" role="status">No click yet.</div>
+        </div>
+      </section>
+
+      <section class="card" data-testid="card-button-states">
+        <div class="card-head"><div><h2>Tricky buttons</h2><p>A random id on every load, a disabled button, and elements that behave like buttons but aren't.</p></div>
+          <div class="locators"><span class="loc">//button[text()='Dynamic id']</span><span class="loc">[id^="dyn-"]</span><span class="loc">#disabledBtn</span></div></div>
+        <div class="card-body">
+          <div class="row">
+            <button class="btn btn-secondary" id="dynamicIdBtn" data-testid="dynamic-id-btn">Dynamic id</button>
+            <button class="btn btn-secondary" id="disabledBtn" data-testid="disabled-btn" disabled>Disabled</button>
+            <button class="btn btn-ghost" id="enableDisabledBtn" data-testid="enable-disabled-btn">Enable the disabled button</button>
+            <input type="button" class="btn btn-secondary" id="inputTypeBtn" data-testid="input-type-btn" value="input type=button">
+            <input type="submit" class="btn btn-secondary" id="inputSubmitBtn" data-testid="input-submit-btn" value="input type=submit">
+            <a href="#" class="btn btn-secondary" role="button" id="anchorBtn" data-testid="anchor-btn">Anchor as button</a>
+            <div class="btn btn-secondary" id="divBtn" data-testid="div-btn" tabindex="0">Div as button</div>
+            <button class="btn btn-secondary" id="iconBtn" data-testid="icon-btn" aria-label="Settings" title="Settings">⚙</button>
+          </div>
+          <p class="small muted" style="margin-top:12px">Dynamic button id right now: <code id="currentDynamicId" data-testid="current-dynamic-id"></code></p>
+          <div class="result" id="stateResult" data-testid="state-result" role="status">Try the buttons above.</div>
+        </div>
+      </section>
+
+      <section class="card" data-testid="card-counter">
+        <div class="card-head"><div><h2>Counter and loading button</h2><p>Assert on a changing number, and on a button that shows a loading state.</p></div>
+          <div class="locators"><span class="loc">#counterValue</span><span class="loc">#incrementBtn</span><span class="loc">#saveBtn</span></div></div>
+        <div class="card-body row" style="gap:24px">
+          <div class="row"><button class="btn btn-secondary" id="decrementBtn" data-testid="decrement-btn">−</button><strong id="counterValue" data-testid="counter-value" style="min-width:40px;text-align:center;font-size:22px">0</strong><button class="btn btn-secondary" id="incrementBtn" data-testid="increment-btn">+</button><button class="btn btn-ghost" id="resetCounterBtn" data-testid="reset-counter-btn">Reset</button></div>
+          <button class="btn btn-primary" id="saveBtn" data-testid="save-btn">Save changes</button>
+        </div>
+      </section>
+
+      <section class="card" data-testid="card-mouse">
+        <div class="card-head"><div><h2>Mouse movement</h2><p>Use action chains to move to offsets, and catch a button that jumps away on hover.</p></div>
+          <div class="locators"><span class="loc">#mousePad</span><span class="loc">#mouseCoords</span><span class="loc">#runawayBtn</span></div></div>
+        <div class="card-body stack">
+          <div class="mouse-pad" id="mousePad" data-testid="mouse-pad"><span class="coords" id="mouseCoords" data-testid="mouse-coords">Move the mouse here</span></div>
+          <div style="position:relative;height:90px;border:1px dashed var(--line);border-radius:var(--radius)" id="runawayArea">
+            <button class="btn btn-danger btn-sm" id="runawayBtn" data-testid="runaway-btn" style="position:absolute;left:20px;top:26px">Catch me</button>
+          </div>
+          <div class="result" id="mouseResult" data-testid="mouse-result" role="status">Pointer events appear here.</div>
+        </div>
+      </section>
+    </main>
+  </div>
+  <div id="app-footer"></div>
+
+  <ul class="dropdown-menu context-menu" id="contextMenu" role="menu" data-testid="context-menu">
+    <li role="menuitem" data-action="copy" data-testid="ctx-copy">Copy</li>
+    <li role="menuitem" data-action="edit" data-testid="ctx-edit">Edit</li>
+    <li role="menuitem" data-action="share" data-testid="ctx-share">Share</li>
+    <li role="menuitem" data-action="delete" data-testid="ctx-delete" style="color:var(--danger)">Delete</li>
+  </ul>
+  <script src="../assets/js/pages/buttons.js" defer></script>
+</body>
+</html>

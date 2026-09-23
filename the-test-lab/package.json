@@ -1,0 +1,18 @@
+{
+  "name": "the-test-lab",
+  "version": "1.0.0",
+  "description": "An open-source website for practising UI test automation with Selenium, Playwright, Cypress, WebdriverIO and more.",
+  "homepage": "https://noorearafin.github.io/the-test-lab/",
+  "repository": { "type": "git", "url": "https://github.com/noorearafin/the-test-lab.git" },
+  "private": true,
+  "scripts": {
+    "start": "http-server . -p 3000 -c-1 --silent",
+    "dev": "http-server . -p 3000 -c-1"
+  },
+  "keywords": ["test-automation", "selenium", "playwright", "cypress", "webdriverio", "qa", "practice", "testing-playground"],
+  "author": "Noor E Arafin (https://github.com/noorearafin)",
+  "license": "MIT",
+  "devDependencies": {
+    "http-server": "^14.1.1"
+  }
+}

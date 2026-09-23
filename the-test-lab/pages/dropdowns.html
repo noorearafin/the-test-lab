@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Dropdowns | The Test Lab</title>
+  <link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="manifest" href="../manifest.webmanifest">
+  <meta name="theme-color" content="#3B3FD8">
+  <link rel="stylesheet" href="../assets/css/styles.css">
+  <script src="../assets/js/layout.js" defer></script>
+</head>
+<body data-page="dropdowns" data-root="..">
+  <div id="app-header"></div>
+  <div class="layout">
+    <aside id="app-sidebar"></aside>
+    <main class="content" id="main" data-tags="Select class, selectByValue, selectByVisibleText, selectOption, multi-select">
+      <section class="card" data-testid="card-native-select">
+        <div class="card-head"><div><h2>Native select</h2><p>A standard single select with a placeholder and a disabled option.</p></div>
+          <div class="locators"><span class="loc">#country</span><span class="loc">select[name="country"]</span></div></div>
+        <div class="card-body grid-2">
+          <div class="field"><label for="country">Country</label>
+            <select class="select" id="country" name="country" data-testid="country">
+              <option value="">Select a country</option>
+              <option value="bd">Bangladesh</option><option value="in">India</option><option value="us">United States</option>
+              <option value="gb">United Kingdom</option><option value="de">Germany</option><option value="jp">Japan</option>
+              <option value="au">Australia</option><option value="xx" disabled>Antarctica (unavailable)</option>
+            </select></div>
+          <div class="field"><label for="city">City (depends on country)</label>
+            <select class="select" id="city" name="city" data-testid="city" disabled><option value="">Select a country first</option></select></div>
+          <div class="field"><label for="vehicle">Vehicle (option groups)</label>
+            <select class="select" id="vehicle" name="vehicle" data-testid="vehicle">
+              <optgroup label="Cars"><option value="sedan">Sedan</option><option value="suv" selected>SUV</option><option value="hatchback">Hatchback</option></optgroup>
+              <optgroup label="Two-wheelers"><option value="motorbike">Motorbike</option><option value="scooter">Scooter</option></optgroup>
+            </select></div>
+          <div class="field"><label for="sortBy">Sort products (triggers change)</label>
+            <select class="select" id="sortBy" name="sortBy" data-testid="sort-by">
+              <option value="relevance">Relevance</option><option value="price-asc">Price: low to high</option><option value="price-desc">Price: high to low</option><option value="newest">Newest first</option>
+            </select></div>
+        </div>
+      </section>
+
+      <section class="card" data-testid="card-multi-select">
+        <div class="card-head"><div><h2>Multi-select</h2><p>Hold Ctrl (Cmd on Mac) to select more than one. Practise deselectAll and getAllSelectedOptions.</p></div>
+          <div class="locators"><span class="loc">#languages</span><span class="loc">select[multiple]</span></div></div>
+        <div class="card-body grid-2">
+          <div class="field"><label for="languages">Programming languages</label>
+            <select class="select" id="languages" name="languages" data-testid="languages" multiple size="7">
+              <option value="java">Java</option><option value="python">Python</option><option value="javascript">JavaScript</option>
+              <option value="typescript">TypeScript</option><option value="csharp">C#</option><option value="ruby">Ruby</option><option value="go">Go</option>
+            </select></div>
+          <div class="stack"><span class="label">Selected</span><div id="languageChips" data-testid="language-chips" class="row"></div>
+            <button class="btn btn-secondary btn-sm" type="button" id="clearLanguages" data-testid="clear-languages" style="align-self:flex-start">Clear selection</button></div>
+        </div>
+      </section>
+
+      <section class="card" data-testid="card-custom-dropdowns">
+        <div class="card-head"><div><h2>Custom dropdowns</h2><p>Built from divs and lists, so the Select helper won't work. Click to open, then click an option.</p></div>
+          <div class="locators"><span class="loc">#frameworkTrigger</span><span class="loc">[role="option"]</span><span class="loc">#searchableInput</span></div></div>
+        <div class="card-body grid-2">
+          <div class="field"><span class="label" id="frameworkLabel">Framework</span>
+            <div class="dropdown" id="frameworkDropdown" data-testid="framework-dropdown" style="display:block">
+              <button type="button" class="btn btn-secondary select-trigger" id="frameworkTrigger" data-testid="framework-trigger" aria-haspopup="listbox" aria-expanded="false" aria-labelledby="frameworkLabel frameworkTrigger"><span id="frameworkValue">Choose a framework</span><span aria-hidden="true">▾</span></button>
+              <ul class="dropdown-menu" id="frameworkMenu" role="listbox" data-testid="framework-menu" hidden style="width:100%">
+                <li role="option" data-value="selenium" id="opt-selenium" data-testid="opt-selenium">Selenium</li>
+                <li role="option" data-value="playwright" id="opt-playwright" data-testid="opt-playwright">Playwright</li>
+                <li role="option" data-value="cypress" id="opt-cypress" data-testid="opt-cypress">Cypress</li>
+                <li role="option" data-value="webdriverio" id="opt-webdriverio" data-testid="opt-webdriverio">WebdriverIO</li>
+                <li role="option" data-value="puppeteer" id="opt-puppeteer" data-testid="opt-puppeteer">Puppeteer</li>
+              </ul>
+            </div></div>
+          <div class="field combo"><label for="searchableInput">Searchable dropdown</label>
+            <input class="input" type="text" id="searchableInput" data-testid="searchable-input" placeholder="Type to filter currencies" role="combobox" aria-expanded="false" aria-controls="searchableMenu" autocomplete="off">
+            <ul class="dropdown-menu" id="searchableMenu" role="listbox" data-testid="searchable-menu" hidden></ul></div>
+          <div class="field"><label for="browserInput">Datalist suggestions</label>
+            <input class="input" type="text" id="browserInput" list="browserList" data-testid="browser-input" placeholder="Start typing a browser">
+            <datalist id="browserList"><option value="Chrome"><option value="Firefox"><option value="Safari"><option value="Edge"><option value="Opera"></datalist></div>
+        </div>
+      </section>
+
+      <div class="result" id="dropdownResult" data-testid="dropdown-result" role="status">Make a selection to see the result.</div>
+    </main>
+  </div>
+  <div id="app-footer"></div>
+
+  <script src="../assets/js/pages/dropdowns.js" defer></script>
+</body>
+</html>
