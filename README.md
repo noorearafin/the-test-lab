@@ -2,7 +2,7 @@
 
 **A free, open-source website for practising UI test automation.**
 
-**Live site:** https://noorearafin.github.io/the-test-lab/
+**Live site:** https://thetestlab.trendportbd.com/
 
 The Test Lab gives you a realistic, modern web UI to write automated tests against, without needing access to a production app. It covers the components and situations testers meet every day: forms, dropdowns, alerts, windows, iframes, tables, drag and drop, waits, shadow DOM, file uploads and a complete login flow.
 
