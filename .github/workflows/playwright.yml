@@ -14,6 +14,7 @@ jobs:
         with:
           node-version: 20
       - name: Start The Test Lab
+        working-directory: the-test-lab
         run: npm install && (npm start &) && npx --yes wait-on http://localhost:3000
       - name: Install Playwright
         working-directory: examples/playwright

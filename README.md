@@ -24,7 +24,7 @@ You need either **Node.js 18+** or **Python 3**.
 
 ```bash
 git clone https://github.com/noorearafin/the-test-lab.git
-cd the-test-lab
+cd the-test-lab/the-test-lab    # the site lives in the the-test-lab/ folder
 
 # Option A: Node
 npm install
@@ -96,7 +96,7 @@ A few elements are intentionally harder, such as the button with a random `dyn-*
 
 ## Example test suites
 
-Ready-to-run examples are in [`examples/`](examples). Start the site first with `npm start`.
+Ready-to-run examples are in [`examples/`](examples). Start the site first with `npm start` from the `the-test-lab/` folder.
 
 **Playwright (JavaScript)**
 ```bash
@@ -144,7 +144,7 @@ If you would rather not use Actions, set **Source** to **Deploy from a branch**,
 
 ### Any other host
 
-Netlify, Vercel, Cloudflare Pages, S3, Nginx or Apache: point them at the repository root, with no build command and no publish directory. On Netlify and Vercel you can also drag the folder straight into their dashboard.
+Netlify, Vercel, Cloudflare Pages, S3, Nginx or Apache: point them at the `the-test-lab/` folder, with no build command and no publish directory. On Netlify and Vercel you can also drag the folder straight into their dashboard.
 
 ### After deploying
 
@@ -154,13 +154,13 @@ The repository URL and the author links live at the top of `assets/js/layout.js`
 
 ## Use it offline
 
-Everything needed to run the site is committed to the repository. Fonts are bundled in `assets/fonts/`, there are no CDN requests, and nothing is fetched from the internet at runtime.
+Everything needed to run the site is committed to the repository. Fonts are bundled in `the-test-lab/assets/fonts/`, there are no CDN requests, and nothing is fetched from the internet at runtime.
 
 **From a clone:**
 
 ```bash
 git clone https://github.com/noorearafin/the-test-lab.git
-cd the-test-lab
+cd the-test-lab/the-test-lab
 npm start                 # or: python3 -m http.server 3000
 ```
 
@@ -177,20 +177,22 @@ Two links on the *Links & images* page point at `httpbin.org` on purpose, to giv
 ## Project structure
 
 ```
-the-test-lab/
-├── index.html                 Landing page
-├── pages/                     One HTML file per practice page, plus helper pages
-├── sw.js                      Service worker for offline use
-├── manifest.webmanifest       Lets the site be installed as an app
-├── assets/
-│   ├── css/styles.css         Design system (light and dark themes)
-│   ├── js/layout.js           Shared header, sidebar, event log and helpers
-│   ├── js/pages/              One script per page
-│   ├── fonts/                 Self-hosted fonts (OFL licensed)
-│   ├── img/                   Favicon and images
-│   └── files/                 Sample files for upload and download tests
-├── examples/                  Playwright, Selenium (Python and Java) and Cypress examples
-└── .github/workflows/         Pages deployment and Playwright CI
+.
+├── the-test-lab/                  The website (deploy this folder)
+│   ├── index.html                 Landing page
+│   ├── pages/                     One HTML file per practice page, plus helper pages
+│   ├── sw.js                      Service worker for offline use
+│   ├── manifest.webmanifest       Lets the site be installed as an app
+│   ├── package.json               `npm start` serves the site on port 3000
+│   └── assets/
+│       ├── css/styles.css         Design system (light and dark themes)
+│       ├── js/layout.js           Shared header, sidebar, event log and helpers
+│       ├── js/pages/              One script per page
+│       ├── fonts/                 Self-hosted fonts (OFL licensed)
+│       ├── img/                   Favicon and images
+│       └── files/                 Sample files for upload and download tests
+├── examples/                      Playwright, Selenium (Python and Java) and Cypress examples
+└── .github/workflows/             Playwright CI
 ```
 
 If you add a page, also add it to the file list in `sw.js` so it is cached for offline use. To add a page, create `pages/<slug>.html` and `assets/js/pages/<slug>.js` using an existing page as a template, then add an entry to the `PAGES` list in `assets/js/layout.js`. It will appear in the sidebar, on the home page and in the previous/next links automatically.
